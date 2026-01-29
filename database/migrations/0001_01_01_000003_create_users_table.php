@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('nivel')->default('padrao');
+            $table->string('nivel')->default('estudante');
             $table->string('whatsapp')->nullable();
             $table->boolean('is_ativo')->default(false);
             $table->string('email')->unique();
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->unsignedBigInteger('departamento_id')->nullable();
-            $table->foreign('departamento_id')->references('id')->on('departments');
+            $table->unsignedBigInteger('course_id')->nullable();
+            $table->foreign('course_id')->references('id')->on('course');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

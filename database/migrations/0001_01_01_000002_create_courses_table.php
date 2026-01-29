@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('configurations', function (Blueprint $table) {
-            $table->string('custom_client_id')->nullable();
+        Schema::create('courses', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('configuration', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('courses');
     }
 };

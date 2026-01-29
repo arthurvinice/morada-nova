@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Register Basic - Pages | Vuexy - Bootstrap Admin Template</title>
+    <title>SEMABET</title>
 
     <meta name="description" content="" />
 
@@ -94,8 +94,8 @@
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-1 pt-2 text-center">Faça a sua empresa 🚀</h4>
-                        <p class="mb-4 text-center">Controle de gestão personalizada</p>
+                        <h4 class="mb-1 pt-2 text-center">Melhores Odds!</h4>
+                        <p class="mb-4 text-center">Aposte com a gente!</p>
 
                         @if($errors->all())
 
