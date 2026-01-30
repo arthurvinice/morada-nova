@@ -19,7 +19,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/logo-semabet-sembg.ico') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -72,7 +72,7 @@
       <!-- Logo -->
       <a href="#" class="app-brand auth-cover-brand">
         <span class="app-brand-logo demo">
-            <image href="{{ asset('assets/img/logo-gesao-house-png.png') }}" class="img img-fluid" width="200"/>
+            <image href="{{ asset('assets/img/logo-semabet-sembg.png') }}" class="img img-fluid" width="200"/>
 
           <span class="text-primary">
 
@@ -132,7 +132,7 @@
           <div class="w-px-400 mx-auto mt-12 pt-5">
 
             <div class="mb-6 align-items-center justify-content-center text-center">
-                <img src="{{ asset('assets/img/logo-gesao-house-png.png')}}" alt="img-fluid mb-4" width="150">
+                <img src="{{ asset('assets/img/logo-semabet.png')}}" alt="img-fluid mb-4" width="150">
             </div>
 
             <hr>

@@ -29,29 +29,9 @@ class AppServiceProvider extends ServiceProvider
             return $user->nivel === 'SuperAdmin';
         });
 
-        // Gate para verificar se Administrador
-        Gate::define('admin-access', function ($user) {
-            return $user->nivel === 'Administrador';
-        });
-
-        //Gate para apenas Administrador ou SuperAdmin
-        Gate::define('admin-or-super-admin', function ($user) {
-            return $user->nivel === 'SuperAdmin' || $user->nivel === 'Administrador';
-        });
-
-        //Gate para que o administrador tenha acesso ao perfil dos usuarios do seu departamento
-        Gate::define('user-access', function ($target) {
-            $user = auth()->user();
-
-            if ($user->nivel === 'SuperAdmin') {
-                return true;
-            }
-
-            if ($user->nivel === 'Administrador' && $user->departamento_id === $target->departamento_id) {
-                return $target->nivel !== 'SuperAdmin';
-            }
-
-            return $user->id === $target->id;
+        // Gate para verificar se é Aluno
+        Gate::define('aluno-access', function ($user) {
+            return $user->nivel === 'Aluno' || $user->nivel === 'SuperAdmin';
         });
     }
 }

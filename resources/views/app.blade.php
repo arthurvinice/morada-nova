@@ -277,11 +277,11 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        @if (empty(\App\Models\Configuration::first()->avatar))
-                                            <img src="{{ asset('assets/img/avatar-gestao-house.jpg') }}"
+                                        @if (empty(\App\Models\User::first()->avatar))
+                                            <img src="{{ asset('assets/img/logo-semabet.png') }}"
                                                 alt="logo" class="img img-fluid h-auto rounded-circle">
                                         @else
-                                            <img src="{{ url(\App\Models\Configuration::first()->avatar) }}"
+                                            <img src="{{ url(\App\Models\User::first()->avatar) }}"
                                                 alt="logo" class="img img-fluid h-auto rounded-circle">
                                         @endif
                                     </div>
