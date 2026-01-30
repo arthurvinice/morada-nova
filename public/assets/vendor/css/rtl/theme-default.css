@@ -84,7 +84,7 @@ body {
 }
 
 .text-primary {
-  color: #7367f0 !important;
+  color: #8fe325 !important;
 }
 
 .text-body[href]:hover {
@@ -92,7 +92,7 @@ body {
 }
 
 .bg-primary {
-  background-color: #7367f0 !important;
+  background-color: #8fe325 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus {
@@ -293,13 +293,13 @@ button.list-group-item-primary.active {
 
 .btn-primary {
   color: #fff;
-  background-color: #7367f0;
-  border-color: #7367f0;
+  background-color: #8fe325;
+  border-color: #8fe325;
 }
 .btn-primary:hover {
   color: #fff !important;
-  background-color: #685dd8 !important;
-  border-color: #685dd8 !important;
+  background-color: #8de325dc !important;
+  border-color: #8de325dc !important;
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus, .btn-primary.focus {
   color: #fff;
@@ -802,10 +802,10 @@ html[dir=rtl] .border-primary {
 }
 
 a {
-  color: #7367f0;
+  color: #8fe325;
 }
 a:hover {
-  color: #8176f2;
+  color: #8de325dc;
 }
 
 .fill-primary {

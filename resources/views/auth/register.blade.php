@@ -67,7 +67,7 @@
 
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-1 pt-2 text-center">SEMABET - Melhores Odds!</h4>
+                        <h4 class="mb-1 pt-2 text-center">SEMABET - As melhores Odds!</h4>
                         <p class="mb-4 text-center">Aposte com a gente!</p>
 
                         @if($errors->all())

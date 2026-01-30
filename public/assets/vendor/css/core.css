@@ -101,10 +101,10 @@
   --bs-tertiary-bg: #dfdfe3;
   --bs-tertiary-bg-rgb: 223, 223, 227;
   --bs-heading-color: #444050;
-  --bs-link-color: #EF6823;
+  --bs-link-color: #8fe325;
   --bs-link-color-rgb: 115, 103, 240;
   --bs-link-decoration: none;
-  --bs-link-hover-color: #685dd8;
+  --bs-link-hover-color: #8de325dc;
   --bs-link-hover-color-rgb: 104, 93, 216;
   --bs-code-color: #e83e8c;
   --bs-highlight-color: #6d6b77;
@@ -174,8 +174,8 @@
   --bs-light-border-subtle: #393c51;
   --bs-dark-border-subtle: #46496a;
   --bs-heading-color: #cfcde4;
-  --bs-link-color: #aba4f6;
-  --bs-link-hover-color: #b3adf7;
+  --bs-link-color: #8de325dc;
+  --bs-link-hover-color: #8de325dc;
   --bs-link-color-rgb: 171, 164, 246;
   --bs-link-hover-color-rgb: 179, 173, 247;
   --bs-code-color: #f18bba;
