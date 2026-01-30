@@ -9,6 +9,7 @@ use App\Models\Subcategory;
 use App\Models\User;
 use App\Models\People;
 use App\Models\Order;
+use App\Models\Terms;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
@@ -26,60 +27,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        Department::factory()->create([
-            'nome' => 'Loja 1',
-            'cnpj' => '12345678901234',
-            // 'logo' => url('assets/img/logo-hospital.png'),
-            'email' => 'loja1@housecriative.com.br',
-            'telefone_principal' => '(11) 99999-9999',
-        ]);
-
-        Department::factory()->create([
-            'nome' => 'Loja 2',
-            'cnpj' => '98765432109876',
-            // 'logo' => url('assets/img/logo-infra.png'),
-            'email' => 'loja2@housecriative.com.br',
-            'telefone_principal' => '(11) 88888-8888',
-        ]);
-
-        // Department::factory()->create([
-        //     'nome' => 'Secretaria de Educação',
-        //     'cnpj' => '12345678901235',
-        //     'logo' => url('assets/img/logo-edu.png'),
-        //     'email' => 'educacao@housecriative.com.br',
-        //     'telefone_principal' => '(11) 77777-7777',
-        // ]);
-
-
-        User::factory()->create([
-            'name' => 'Roberto Ferreira',
-            'nivel' => 'SuperAdmin',
-            'is_ativo' => true,
-            'email' => 'roberto@housecriative.com.br',
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
-            'departamento_id' => null,
-        ]);
-
-        User::factory()->create([
-            'name' => 'Ferreira Júnior',
-            'nivel' => 'SuperAdmin',
-            'is_ativo' => true,
-            'email' => 'paulojunior@housecriative.com.br',
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
-            'departamento_id' => null,
-        ]);
-
         User::factory()->create([
             'name' => 'Arthur Vinícius',
             'nivel' => 'SuperAdmin',
             'is_ativo' => true,
             'email' => 'arthurvinice@gmail.com',
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
             'departamento_id' => null,
         ]);
@@ -92,32 +46,112 @@ class DatabaseSeeder extends Seeder
             ['nome' => 'Mudança na Interface'],
         ]);
 
+        Terms::factory()->create([
+            'term' => 'TERMO DE USO DO SISTEMA DE APOSTAS ACADÊMICO
+                1. OBJETIVO DO SISTEMA
 
+                Este sistema tem caráter estritamente acadêmico e educacional, sendo desenvolvido com a finalidade de estudos, aprendizagem e prática de conceitos de programação, banco de dados, interfaces web e lógica de sistemas, no âmbito de atividades escolares do Instituto Federal do Rio Grande do Norte (IFRN).
 
-        // // LOJA 1
+                Não se trata de uma plataforma de apostas real, comercial ou financeira.
 
-        // User::factory()->create([
-        //     'name' => 'Ilana Martins',
-        //     'nivel' => 'Administrador',
-        //     'is_ativo' => true,
-        //     'departamento_id' => '1',
-        //     'email' => 'adm-loja1@gmail.com',
-        //     'email_verified_at' => now(),
-        //     'password' => static::$password ??= Hash::make('password'),
-        //     'remember_token' => Str::random(10),
-        // ]);
+                2. NATUREZA FICTÍCIA DAS APOSTAS
 
-        // // LOJA 2
+                Todas as apostas, valores, pontuações, créditos ou recompensas apresentadas no sistema são totalmente fictícias, não envolvendo:
 
-        // User::factory()->create([
-        //     'name' => 'Josias Albuquerque',
-        //     'nivel' => 'Administrador',
-        //     'is_ativo' => true,
-        //     'departamento_id' => 2,
-        //     'email' => 'adm-loja2@gmail.com',
-        //     'email_verified_at' => now(),
-        //     'password' => static::$password ??= Hash::make('password'),
-        //     'remember_token' => Str::random(10),
-        // ]);
+                Dinheiro real
+
+                Prêmios financeiros
+
+                Bens materiais
+
+                Qualquer forma de remuneração ou ganho econômico
+
+                O sistema não realiza transações financeiras, não utiliza meios de pagamento e não gera qualquer tipo de lucro.
+
+                3. PÚBLICO-ALVO
+
+                O uso do sistema é restrito a:
+
+                Estudantes
+
+                Professores
+
+                Avaliadores
+
+                Participantes autorizados de projetos acadêmicos
+
+                Todos vinculados às atividades educacionais do IFRN.
+
+                4. FINALIDADE EDUCACIONAL
+
+                O sistema é utilizado para:
+
+                Simulação de cenários
+
+                Aprendizado de lógica de sistemas
+
+                Desenvolvimento de habilidades técnicas
+
+                Demonstração de funcionalidades de software
+
+                Não possui qualquer vínculo com casas de apostas, jogos de azar ou plataformas de betting reais.
+
+                5. RESPONSABILIDADES DO USUÁRIO
+
+                Ao utilizar o sistema, o usuário compromete-se a:
+
+                Utilizá-lo exclusivamente para fins acadêmicos
+
+                Não tentar adaptar ou divulgar o sistema como uma plataforma real de apostas
+
+                Não inserir informações falsas que possam caracterizar fraude ou uso indevido
+
+                Respeitar as normas institucionais do IFRN
+
+                6. LIMITAÇÕES DE RESPONSABILIDADE
+
+                Os desenvolvedores e o IFRN não se responsabilizam por:
+
+                Uso indevido do sistema fora do contexto educacional
+
+                Interpretação equivocada da finalidade do projeto
+
+                Qualquer tentativa de utilização comercial ou financeira
+
+                7. PROIBIÇÕES
+
+                É expressamente proibido:
+
+                Utilizar o sistema para apostas reais
+
+                Associar o sistema a plataformas de jogos de azar
+
+                Utilizar o sistema para fins comerciais
+
+                Reproduzir ou redistribuir o sistema sem autorização acadêmica
+
+                8. DIREITOS AUTORAIS E PROPRIEDADE INTELECTUAL
+
+                O sistema é um projeto acadêmico, e seu código, layout e funcionalidades destinam-se apenas a fins educacionais.
+                Qualquer reutilização deve respeitar os direitos autorais e as normas institucionais.
+
+                9. ALTERAÇÕES NO TERMO DE USO
+
+                Este Termo de Uso pode ser alterado a qualquer momento para adequação a normas acadêmicas, legais ou institucionais, sem aviso prévio.
+
+                10. ACEITE DOS TERMOS
+
+                Ao acessar ou utilizar este sistema, o usuário declara que:
+
+                Leu
+
+                Compreendeu
+
+                Concorda integralmente com este Termo de Uso
+
+                Reconhecendo seu caráter exclusivamente acadêmico e fictício.',
+            'version' => '1.0',
+        ]);
+
     }
 }

@@ -20,36 +20,11 @@ Route::get('/', function () {
 
 Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
 
-    // configurações do sistema
-    Route::resource('configurations', ConfigurationController::class)->middleware('can:super-admin-access');
-
-    //rota para index do backup
-    Route::get('backup', [ConfigurationController::class, 'backupPeopleIndex'])->name('backup.index');
-    //rota para gerar backup
-    Route::get('backup/generate', [ConfigurationController::class, 'generateBackup'])->name('backup.generate');
-    //rota para download do backup
-    Route::get('backup/download/{file}', [ConfigurationController::class, 'downloadBackup'])->name('backup.download');
-
     //notificações
     Route::get('/notificacoes', [NotificationController::class, 'index'])->name('notification.index');
     Route::get('/notificacoes/criar', [NotificationController::class, 'create'])->middleware('can:admin-or-super-admin')->name('notification.create');
     Route::post('/notificacoes/enviar', [NotificationController::class, 'store'])->middleware('can:admin-or-super-admin')->name('notification.store');
     Route::get('/notificacoes/mostrar/{id}', [NotificationController::class, 'show'])->name('notification.show');
-
-    //Departamentos
-    Route::get('departamentos/', [DepartmentController::class, 'index'])->middleware('can:super-admin-access')->name('departments.index');
-    Route::get('departamento/cadastro', [DepartmentController::class, 'create'])->middleware('can:super-admin-access')->name('departments.create');
-    Route::get('departamento/{id}/editar', [DepartmentController::class, 'edit'])->middleware('can:admin-or-super-admin')->name('departments.edit');
-    Route::post('departamento/store', [DepartmentController::class, 'store'])->middleware('can:super-admin-access')->name('departments.store');
-    Route::put('departmento/{id}/atualizar', [DepartmentController::class, 'update'])->middleware('can:admin-or-super-admin')->name('departments.update');
-
-
-    //tickets
-    Route::prefix('suporte')->name('suporte.')->group(function () {
-        Route::get('tickets/', [TicketController::class, 'index'])->name('ticket.index');
-        Route::get('ticket/criar', [TicketController::class, 'create'])->name('ticket.create');
-        Route::get('/tickets/{uuid}', [TicketController::class, 'show'])->name('ticket.show');
-    });
 
     //helpcenter
     Route::get('helpcenter', [HelpCenterController::class, 'index'])->name('helpcenter.index');

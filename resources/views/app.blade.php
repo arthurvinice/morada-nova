@@ -385,7 +385,7 @@
                                         class="footer-link">House Criative</a>
                                 </div>
                                 <div>
-                                    <a href="{{ route('admin.changelog.index') }}">Versão: 1.1.7</a>
+                                    <a href="{{ route('admin.changelog.index') }}">Versão: 1.0.0</a>
                                 </div>
                             </div>
                         </div>
