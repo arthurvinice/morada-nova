@@ -10,4 +10,9 @@ class TermsController extends Controller
     {
         return view('terms.show');
     }
+
+    public function showPublic()
+    {
+        return view('terms.public');
+    }
 }

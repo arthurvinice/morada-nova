@@ -13,7 +13,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/logo-semabet-sembg.ico') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,47 +63,20 @@
                     <div class="card-body">
                         <!-- Logo -->
                         <div class="app-brand justify-content-center mb-4 mt-2">
-                            <a href="index.html" class="app-brand-link gap-2">
-                                <span class="app-brand-logo demo">
-                                    <?xml version="1.0" encoding="UTF-8"?><svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132.11 77.69">
-                                        <defs>
-                                            <style>
-                                                .cls-1 {
-                                                    fill: #398ea8;
-                                                }
+                            <img src="{{ asset('assets/img/logo-semabet.png')}}" alt="img-fluid mb-4" width="100">
 
-                                                .cls-1,
-                                                .cls-2 {
-                                                    stroke-width: 0px;
-                                                }
-
-                                                .cls-2 {
-                                                    fill: #009fe3;
-                                                }
-                                            </style>
-                                        </defs>
-                                        <g id="Layer_1-2">
-                                            <path class="cls-1"
-                                                d="M25.88,24.94c2.32-2.25,5.27-4.03,8.88-4.53,2.66-.37,4.72.77,6.6,2.66,11.14,11.21,22.31,22.39,33.52,33.52,7.42,7.37,16.33,9.7,26.24,6.56,9.8-3.11,15.8-10.08,17.52-20.25,1.66-9.83-1.63-18.13-9.38-24.31-7.67-6.11-16.42-7.36-25.52-3.64-2.53,1.03-3.89.62-5.6-1.21-2.14-2.27-4.6-4.24-7.19-6.59,5.84-4.09,11.58-6.21,17.81-6.89,20.21-2.22,38.31,10.78,42.49,30.43,4.19,19.69-7.22,39.21-26.79,45.1-12.91,3.89-25.54,2.03-35.36-7.11-14.89-13.86-28.67-28.9-43.21-43.72Z" />
-                                            <path class="cls-2"
-                                                d="M106.02,51.82c-4.44,5.93-11.21,6.54-16.19,1.57-10.98-10.97-21.88-22.02-32.95-32.9-7.35-7.22-16.23-9.51-26.05-6.39-9.44,3-15.5,9.61-17.47,19.38-2.01,9.96.93,18.57,8.8,25.08,8.05,6.66,17.16,7.73,26.79,3.77,1.66-.68,2.7-.66,3.98.67,2.37,2.45,4.93,4.71,7.67,7.3-4.97,3.69-10,5.54-15.36,6.44C23.83,80.3,3.65,65.9.46,44.87-2.81,23.33,11.66,3.5,33.19.5c11.95-1.66,22.86,1.43,31.61,9.9,13.48,13.04,26.61,26.45,39.87,39.71.52.52.92,1.17,1.35,1.72Z" />
-                                        </g>
-                                    </svg>
-                                </span>
-                                <span class="app-brand-text demo text-body fw-bold ms-1">HouseCRM</span>
-                            </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-1 pt-2 text-center">Melhores Odds!</h4>
+                        <h4 class="mb-1 pt-2 text-center">SEMABET - Melhores Odds!</h4>
                         <p class="mb-4 text-center">Aposte com a gente!</p>
 
                         @if($errors->all())
 
-                            @foreach($errors->all() as $error)
-                                <div class="alert alert-danger">
-                                    {{ $error }}
-                                </div>
-                            @endforeach
+                        @foreach($errors->all() as $error)
+                        <div class="alert alert-danger">
+                            {{ $error }}
+                        </div>
+                        @endforeach
 
                         @endif
 
@@ -120,7 +93,7 @@
                             <div class="mb-3">
                                 <label for="email" class="form-label">E-mail</label>
                                 <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Seu e-mail profissional" />
+                                    placeholder="Seu e-mail" />
                             </div>
 
                             <div class="mb-3 form-password-toggle">
@@ -145,14 +118,19 @@
 
                             <div class="mb-3">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="terms-conditions"
-                                        name="terms" />
+                                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
                                     <label class="form-check-label" for="terms-conditions">
                                         Eu aceito os
-                                        <a href="javascript:void(0);">Termos & Privacidade de Uso</a>
+                                        <button type="button"
+                                            class="btn btn-link p-0 align-baseline"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#termsModal">
+                                            Termos de Uso
+                                        </button>
                                     </label>
                                 </div>
                             </div>
+
                             <button type="submit" class="btn btn-primary d-grid w-100">Cadastrar</button>
                         </form>
 
@@ -166,6 +144,86 @@
                     </div>
                 </div>
                 <!-- Register Card -->
+                <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    Termos de Uso – SEMABET (Uso Acadêmico)
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <p>
+                                    O <strong>SEMABET</strong> é um sistema de apostas
+                                    <strong>exclusivamente acadêmico</strong>, desenvolvido para fins
+                                    educacionais no contexto das competições escolares do
+                                    <strong>IFRN</strong>.
+                                </p>
+
+                                <p>
+                                    Este sistema não envolve dinheiro real, prêmios financeiros,
+                                    transações bancárias ou qualquer forma de ganho econômico.
+                                </p>
+
+                                <h6><strong>1. Natureza Fictícia</strong></h6>
+                                <p>
+                                    Todas as apostas, valores, créditos e resultados apresentados são
+                                    totalmente fictícios, utilizados apenas para simulação e estudo.
+                                </p>
+
+                                <h6><strong>2. Finalidade Educacional</strong></h6>
+                                <p>
+                                    O sistema tem como objetivo o aprendizado de programação,
+                                    desenvolvimento web, banco de dados e lógica de sistemas.
+                                </p>
+
+                                <h6><strong>3. Público-Alvo</strong></h6>
+                                <p>
+                                    Destina-se exclusivamente a estudantes, professores e participantes
+                                    autorizados em atividades acadêmicas do IFRN.
+                                </p>
+
+                                <h6><strong>4. Proibições</strong></h6>
+                                <ul>
+                                    <li>Uso para apostas reais</li>
+                                    <li>Uso comercial ou financeiro</li>
+                                    <li>Associação com casas de apostas reais</li>
+                                </ul>
+
+                                <h6><strong>5. Responsabilidade</strong></h6>
+                                <p>
+                                    Os desenvolvedores e o IFRN não se responsabilizam por usos indevidos
+                                    fora do contexto educacional.
+                                </p>
+
+                                <p class="mt-3">
+                                    Ao aceitar estes termos, o usuário reconhece o caráter
+                                    <strong>exclusivamente acadêmico e fictício</strong> do sistema.
+                                </p>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal">
+                                    Fechar
+                                </button>
+
+                                <button type="button" class="btn btn-primary"
+                                    onclick="acceptTerms()">
+                                    Aceitar Termos
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -197,6 +255,19 @@
 
     <!-- Page JS -->
     <script src="../../assets/js/pages-auth.js"></script>
+
+    <script>
+        function acceptTerms() {
+            const checkbox = document.getElementById('terms-conditions');
+            checkbox.checked = true;
+
+            const modal = bootstrap.Modal.getInstance(
+                document.getElementById('termsModal')
+            );
+            modal.hide();
+        }
+    </script>
+
 </body>
 
 </html>

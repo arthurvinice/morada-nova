@@ -8,69 +8,70 @@
   data-assets-path="{{ asset('assets') }}/"
   data-template="horizontal-menu-template"
   data-bs-theme="light">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>SEMABET</title>
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <meta name="description" content="" />
+  <title>SEMABET</title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/logo-semabet-sembg.ico') }}" />
+  <meta name="description" content="" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
-      rel="stylesheet" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/logo-semabet-sembg.ico') }}" />
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/iconify-icons.css') }}" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
+    rel="stylesheet" />
 
-    <!-- Core CSS -->
-    <!-- build:css assets/vendor/css/theme.css  -->
+  <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/iconify-icons.css') }}" />
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}" />
+  <!-- Core CSS -->
+  <!-- build:css assets/vendor/css/theme.css  -->
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/pickr/pickr-themes.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}" />
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/vendor/libs/pickr/pickr-themes.css') }}" />
 
-    <!-- Vendors CSS -->
+  <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+  <!-- Vendors CSS -->
 
-    <!-- endbuild -->
+  <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
-    <!-- Vendor -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/@form-validation/form-validation.css') }}" />
+  <!-- endbuild -->
 
-    <!-- Page CSS -->
-    <!-- Page -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}" />
+  <!-- Vendor -->
+  <link rel="stylesheet" href="{{ asset('assets/vendor/libs/@form-validation/form-validation.css') }}" />
 
-    <!-- Helpers -->
-    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+  <!-- Page CSS -->
+  <!-- Page -->
+  <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}" />
 
-    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
-    <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script>
+  <!-- Helpers -->
+  <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+  <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
 
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+  <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+  <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script>
 
-    <script src="{{ asset('assets/js/config.js') }}"></script>
-  </head>
+  <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
 
-  <body>
-    <!-- Content -->
+  <script src="{{ asset('assets/js/config.js') }}"></script>
+</head>
 
-    <div class="authentication-wrapper authentication-cover">
-      <!-- Logo -->
-      <a href="#" class="app-brand auth-cover-brand">
+<body>
+  <!-- Content -->
+
+  <div class="authentication-wrapper authentication-cover">
+    <!-- Logo -->
+    <!-- <a href="#" class="app-brand auth-cover-brand">
         <span class="app-brand-logo demo">
             <image href="{{ asset('assets/img/logo-semabet-sembg.png') }}" class="img img-fluid" width="200"/>
 
@@ -105,132 +106,126 @@
         </span>
         {{-- <span class="app-brand-text demo text-heading fw-bold">Gestão House</span> --}}
 
-      </a>
-      <!-- /Logo -->
-      <div class="authentication-inner row m-0">
-        <!-- /Left Text -->
-        <div class="d-none d-xl-flex col-xl-8 p-0">
-          <div class="auth-cover-bg d-flex justify-content-center align-items-center">
-            <img
-              src="../../assets/img/illustrations/auth-login-illustration-light.png"
-              alt="auth-login-cover"
-              class="my-5 auth-illustration"
-              data-app-light-img="illustrations/auth-login-illustration-light-2.png"
-              data-app-dark-img="illustrations/auth-login-illustration-dark-2.png" />
-            <img
-              src="../../assets/img/illustrations/bg-shape-image-light.png"
-              alt="auth-login-cover"
-              class="platform-bg"
-              data-app-light-img="illustrations/bg-shape-image-light.png"
-              data-app-dark-img="illustrations/bg-shape-image-dark.png" />
-          </div>
+      </a> -->
+    <!-- /Logo -->
+    <div class="authentication-inner row m-0">
+      <!-- /Left Text -->
+      <div class="d-none d-xl-flex col-xl-8 p-0" style="background-image: url('{{ asset('assets/img/bg-login.jpg') }}'); background-repeat: no-repeat; background-size: cover;">
+        <div class="auth-cover-bg d-flex justify-content-center align-items-center">
+        
         </div>
-        <!-- /Left Text -->
+      </div>
+      <!-- /Left Text -->
 
-        <!-- Login -->
-        <div class="d-flex col-12 col-xl-4 align-items-center authentication-bg p-sm-12 p-6">
-          <div class="w-px-400 mx-auto mt-12 pt-5">
+      <!-- Login -->
+      <div class="d-flex col-12 col-xl-4 align-items-center authentication-bg p-sm-12 p-6">
+        <div class="w-px-400 mx-auto mt-12 pt-5">
 
-            <div class="mb-6 align-items-center justify-content-center text-center">
-                <img src="{{ asset('assets/img/logo-semabet.png')}}" alt="img-fluid mb-4" width="150">
+          <div class="mb-6 align-items-center justify-content-center text-center">
+            <img src="{{ asset('assets/img/logo-semabet.png')}}" alt="img-fluid mb-4" width="150">
+          </div>
+
+          <hr>
+
+          <h4 class="mb-1 mt-5">Seja bem-vindo! 👋</h4>
+          <p class="mb-6">Entre com suas credenciais.</p>
+
+          @include('_inc.alerts')
+
+
+          <form id="" class="mb-6" action="{{ route('login') }}" method="post">
+            @csrf
+
+            <div class="mb-6 form-control-validation">
+              <label for="email" class="form-label">Email</label>
+              <input type="text" class="form-control" id="email" name="email" value="{{ old('email')}}" placeholder="Informe seu e-mail" autofocus />
+
+              @error('email')
+              <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
             </div>
 
-            <hr>
+            <div class="mb-6 form-password-toggle form-control-validation">
+              <label class="form-label" for="password">Senha</label>
+              <div class="input-group input-group-merge">
+                <input type="password" id="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Informe sua senha segura" />
+                <span class="input-group-text cursor-pointer"><i class="icon-base ti tabler-eye-off"></i></span>
+              </div>
 
-            <h4 class="mb-1 mt-5">Seja bem-vindo! 👋</h4>
-            <p class="mb-6">Entre com suas credenciais.</p>
+              @error('password')
+              <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
+            </div>
 
-            @include('_inc.alerts')
-
-
-            <form id="" class="mb-6" action="{{ route('login') }}" method="post">
-                @csrf
-
-                <div class="mb-6 form-control-validation">
-                    <label for="email"  class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" value="{{ old('email')}}" placeholder="Informe seu e-mail" autofocus />
-
-                    @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+            <div class="my-8">
+              <div class="d-flex justify-content-between">
+                <div class="form-check mb-0 ms-2">
+                  <input class="form-check-input" type="checkbox" id="remember-me" />
+                  <label class="form-check-label" for="remember-me"> Lembrar-me </label>
                 </div>
 
-                <div class="mb-6 form-password-toggle form-control-validation">
-                    <label class="form-label" for="password">Senha</label>
-                    <div class="input-group input-group-merge">
-                    <input type="password" id="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Informe sua senha segura" />
-                    <span class="input-group-text cursor-pointer"><i class="icon-base ti tabler-eye-off"></i></span>
-                    </div>
+                <a href="{{ route('password.request') }}">
+                  <p class="mb-0">Esqueceu a senha?</p>
+                </a>
+              </div>
+            </div>
 
-                    @error('password')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+            <button class="btn btn-primary d-grid w-100" type="submit">Entrar</button>
+          </form>
 
-                <div class="my-8">
-                    <div class="d-flex justify-content-between">
-                        <div class="form-check mb-0 ms-2">
-                            <input class="form-check-input" type="checkbox" id="remember-me" />
-                            <label class="form-check-label" for="remember-me"> Lembrar-me </label>
-                        </div>
+          <p class="text-center">
+            <span>Quer ter acesso?</span>
 
-                        <a href="{{ route('password.request') }}">
-                            <p class="mb-0">Esqueceu a senha?</p>
-                        </a>
-                    </div>
-                </div>
+            <a href="{{ route('register') }}">
+              <span>Registre-se</span>
+            </a> ou entre com o
+            <a href="#">
+              <span> SUAP</span>
+            </a>
+          </p>
 
-                <button class="btn btn-primary d-grid w-100" type="submit">Entrar</button>
-            </form>
-
-            <p class="text-center">
-              <span>Quer ter acesso?</span>
-              <a href="https://wa.me/5584994612434?text=Quero%20ter%20acesso%20ao%20Sistema%20de%20Gest%C3%A3o%20P%C3%BAblica.%20">
-                <span>Fale conosco</span>
-              </a>
-            </p>
-
-          </div>
         </div>
-        <!-- /Login -->
       </div>
+      <!-- /Login -->
     </div>
+  </div>
 
-    <!-- / Content -->
+  <!-- / Content -->
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/theme.js -->
+  <!-- Core JS -->
+  <!-- build:js assets/vendor/js/theme.js -->
 
-    <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
-    <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/node-waves/node-waves.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
+  <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/node-waves/node-waves.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/libs/@algolia/autocomplete-js.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/@algolia/autocomplete-js.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/libs/hammer/hammer.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/hammer/hammer.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/libs/i18n/i18n.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/i18n/i18n.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
+  <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
 
-    <!-- endbuild -->
+  <!-- endbuild -->
 
-    <!-- Vendors JS -->
-    <script src="{{ asset('assets/vendor/libs/@form-validation/popular.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/@form-validation/bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/@form-validation/auto-focus.js') }}"></script>
+  <!-- Vendors JS -->
+  <script src="{{ asset('assets/vendor/libs/@form-validation/popular.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/@form-validation/bootstrap5.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/@form-validation/auto-focus.js') }}"></script>
 
-    <!-- Main JS -->
+  <!-- Main JS -->
 
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+  <script src="{{ asset('assets/js/main.js') }}"></script>
 
-    <!-- Page JS -->
-    {{-- <script src="{{ asset('assets/js/pages-auth.js') }}"></script> --}}
-  </body>
+  <!-- Page JS -->
+  {{-- <script src="{{ asset('assets/js/pages-auth.js') }}"></script> --}}
+</body>
+
 </html>

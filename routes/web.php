@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 
+
 Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
 
     //notificações
@@ -37,6 +38,7 @@ Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
 
     //rota termos
     Route::get('/suporte/termos', [TermsController::class, 'show'])->name('terms.show');
+
 
     // Perfil do usuário
     Route::get('usuarios/', [UserController::class, 'index'])->middleware('can:super-admin-access')->name('user.index');
