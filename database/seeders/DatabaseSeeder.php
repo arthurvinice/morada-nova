@@ -2,17 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\ChangelogCategory;
-use App\Models\Department;
-use App\Models\Subcategory;
 use App\Models\User;
-use App\Models\People;
-use App\Models\Order;
 use App\Models\Terms;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -35,7 +28,6 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
-            'departamento_id' => null,
         ]);
 
         ChangelogCategory::factory()->createMany([
@@ -47,7 +39,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Terms::factory()->create([
-            'term' => 'TERMO DE USO DO SISTEMA DE APOSTAS ACADÊMICO
+            'title' => 'TERMO DE USO DO SISTEMA DE APOSTAS ACADÊMICO',
+            'content' => '
                 1. OBJETIVO DO SISTEMA
 
                 Este sistema tem caráter estritamente acadêmico e educacional, sendo desenvolvido com a finalidade de estudos, aprendizagem e prática de conceitos de programação, banco de dados, interfaces web e lógica de sistemas, no âmbito de atividades escolares do Instituto Federal do Rio Grande do Norte (IFRN).

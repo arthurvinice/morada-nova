@@ -17,8 +17,8 @@ class TermFactory extends Factory
     public function definition(): array
     {
         return [
-            //termo:
-            'term' => $this->faker->paragraphs(5, true),
+            'title' => 'Termo de Uso do Sistema Acadêmico',
+            'content' => 'Conteúdo do termo...',
             'version' => '1.0',
         ];
     }

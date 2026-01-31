@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Terms;
 use Illuminate\Http\Request;
 
 class TermsController extends Controller
@@ -13,6 +14,7 @@ class TermsController extends Controller
 
     public function showPublic()
     {
-        return view('terms.public');
+        $terms = Terms::latest()->first();
+        return view('terms.public', compact('terms'));
     }
 }

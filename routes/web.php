@@ -51,11 +51,4 @@ Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
     Route::put('usuario/update/password/{id}', [UserController::class, 'updatePassword'])->middleware('can:user-access')->name('user.perfil.updatePassword');
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('dashboard-analitico', [DashboardController::class, 'dashboardAnalitica'])->name('dashboard.analitico');
-
-    Route::get('/admin/geocode-addresses', function () {
-        \Illuminate\Support\Facades\Artisan::call('addresses:geocode', ['--limit' => 50]);
-        return redirect()->back()->with('success', 'Geocodificação de 50 endereços iniciada em background.');
-    })->name('geocode-addresses');
-
 });
