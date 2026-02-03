@@ -33,7 +33,7 @@
   --bs-gray-700: #6d6b77;
   --bs-gray-800: #595564;
   --bs-gray-900: #444050;
-  --bs-primary: #8fe325;
+  --bs-primary: #004387;
   /* #EF6823 */
   --bs-secondary: #808390;
   --bs-success: #28c76f;
@@ -101,7 +101,7 @@
   --bs-tertiary-bg: #dfdfe3;
   --bs-tertiary-bg-rgb: 223, 223, 227;
   --bs-heading-color: #444050;
-  --bs-link-color: #8fe325;
+  --bs-link-color: #004387;
   --bs-link-color-rgb: 115, 103, 240;
   --bs-link-decoration: none;
   --bs-link-hover-color: #8de325dc;

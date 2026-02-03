@@ -22,7 +22,7 @@
   --bs-gray-dark: rgba(75, 70, 92, 0.8);
   --bs-gray-25: rgba(75, 70, 92, 0.015);
   --bs-gray-50: rgba(75, 70, 92, 0.03);
-  --bs-primary: #8fe325;
+  --bs-primary: #004387;
   --bs-secondary: #a8aaae;
   --bs-success: #28c76f;
   --bs-info: #00cfe8;
@@ -89,10 +89,10 @@
   --bs-tertiary-bg: rgba(75, 70, 92, 0.05);
   --bs-tertiary-bg-rgb: 75, 70, 92;
   --bs-heading-color: #5d596c;
-  --bs-link-color: #8fe325;
+  --bs-link-color: #004387;
   --bs-link-color-rgb: 115, 103, 240;
   --bs-link-decoration: none;
-  --bs-link-hover-color: #8de325dc;
+  --bs-link-hover-color: #004387dc;
   --bs-link-hover-color-rgb: 104, 93, 216;
   --bs-code-color: #e83e8c;
   --bs-highlight-color: #6f6b7d;

@@ -15,12 +15,12 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-  <title>SEMABET</title>
+  <title>Morada Nova - Gestão Imobiliária</title>
 
   <meta name="description" content="" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/logo-semabet-sembg.ico') }}" />
+  <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/morada-nova-logo.ico') }}" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -110,7 +110,7 @@
     <!-- /Logo -->
     <div class="authentication-inner row m-0">
       <!-- /Left Text -->
-      <div class="d-none d-xl-flex col-xl-8 p-0" style="background-image: url('{{ asset('assets/img/bg-login.jpg') }}'); background-repeat: no-repeat; background-size: cover;">
+      <div class="d-none d-xl-flex col-xl-8 p-0" style="background-image: url('{{ asset('assets/img/houses-bg.jpg') }}'); background-repeat: no-repeat; background-size: cover;">
         <div class="auth-cover-bg d-flex justify-content-center align-items-center">
         
         </div>
@@ -122,7 +122,7 @@
         <div class="w-px-400 mx-auto mt-12 pt-5">
 
           <div class="mb-6 align-items-center justify-content-center text-center">
-            <img src="{{ asset('assets/img/logo-semabet.png')}}" alt="img-fluid mb-4" width="150">
+            <img src="{{ asset('assets/img/morada-nova-logo-removebg.png')}}" alt="img-fluid mb-4" width="150">
           </div>
 
           <hr>
@@ -179,10 +179,6 @@
             <a href="{{ route('register') }}">
               <span>Registre-se</span>
             </a> 
-            <!-- ou entre com o
-            <a href="#">
-              <span> SUAP</span>
-            </a> -->
           </p>
 
         </div>
