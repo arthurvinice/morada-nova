@@ -27,7 +27,7 @@ class CheckActiveUser
         $user = Auth::user();
 
         // Verifica se o usuário está ativo (supondo que há uma coluna 'is_active' no modelo User)
-        if (!$user->is_ativo) {
+        if ($user->status !== 'active') {
 
             // Opcional: Desloga o usuário se estiver inativo
             Auth::logout();

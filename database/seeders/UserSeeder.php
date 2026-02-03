@@ -20,11 +20,11 @@ class UserSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Super Admin',
+            'status' => 'active',
+            'cpf' => '000.000.000-00',
             'email' => 'admin@sistema.com',
             'password' => Hash::make('123456'),
-            'nivel' => 'SuperAdmin',
-            'is_ativo' => true,
-            'departamento_id' => Arr::random([1,2]),
+            'role' => 'SuperAdmin',
         ]);
 
     }

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->string('name');
+            $table->string('cpf')->unique();
+            $table->string('status')->default('active');
             $table->string('role')->default('standard');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

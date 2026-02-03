@@ -28,13 +28,13 @@ class UserFactory extends Factory
 
         return [
             'name' => fake()->name(),
-            'nivel' => Arr::random($cargos),
-            'is_ativo' => false,
+            'status' => 'active',
+            'cpf' => fake()->cpf(),
+            'role' => Arr::random($cargos),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'departamento_id' => Arr::random([1,2]),
         ];
     }
 
