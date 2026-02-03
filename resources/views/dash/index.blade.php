@@ -13,7 +13,7 @@
 @section('content')
     @include('_inc.alerts')
 
-    @livewire('dash-index')
+    @livewire('dash.index')
 @endsection
 
 @push('scripts')

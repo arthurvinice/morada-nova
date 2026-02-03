@@ -70,15 +70,13 @@
                         <a href="{{ route('admin.dashboard') }}" class="app-brand-link">
 
                             <span class="app-brand-text demo menu-text fw-bold text-heading">
-                                @if (empty(\App\Models\User::first()->avatar))
-                                <img src="{{ asset('assets/img/-logo-semabet-sembg.png') }}" width="150"
-                                    alt="logo" class="img img-fluid h-auto">
+                                @if (empty(\App\Models\User::first()->image))
+                                <img src="{{ asset('assets/img/morada-nova-logo-removebg.png') }}"
+                                    alt="logo" class="img-fluid" style="max-height: 40px; width: auto;">
                                 @else
-                                <img src="{{ url(\App\Models\User::first()->avatar) }}" width="150"
-                                    alt="logo" class="img img-fluid h-auto">
+                                <img src="{{ url(\App\Models\User::first()->image) }}"
+                                    alt="logo" class="img-fluid" style="max-height: 40px; width: auto;">
                                 @endif
-
-                                {{-- <img src="{{ asset('assets/img/logo-semabet-sembg.png') }}" width="150" alt="logo" class="img img-fluid"> --}}
                             </span>
                         </a>
 
@@ -96,17 +94,7 @@
 
                     <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
                         <ul class="navbar-nav flex-row align-items-center ms-md-auto">
-                            <!-- Search -->
-                            {{-- <li class="nav-item navbar-search-wrapper btn btn-text-secondary btn-icon rounded-pill">
-                  <a class="nav-item nav-link search-toggler px-0" href="javascript:void(0);">
-                    <span class="d-inline-block text-body-secondary fw-normal" id="autocomplete"></span>
-                  </a>
-                </li> --}}
-                            <!-- /Search -->
-                            <!--/ Language -->
-
-                            <!-- Style Switcher -->
-                            <li class="nav-item dropdown">
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow btn btn-icon btn-text-secondary rounded-pill"
                                     id="nav-theme" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <i class="icon-base ti tabler-sun icon-22px theme-icon-active text-heading"></i>
@@ -128,10 +116,8 @@
                                         </button>
                                     </li>
                                 </ul>
-                            </li>
-                            <!-- / Style Switcher-->
+                            </li> -->
 
-                            <!-- Quick links  -->
                             <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow btn btn-icon btn-text-secondary rounded-pill"
                                     href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside"
@@ -183,9 +169,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <!-- Quick links -->
 
-                            <!-- Central de Ajuda -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow btn btn-icon btn-text-secondary rounded-pill"
                                     href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside"
@@ -223,20 +207,18 @@
                                 </ul>
 
                             </li>
-                            <!-- Notification -->
-                            @livewire('navbar-notifications')
-                            <!--/ Notification -->
 
-                            <!-- User -->
+                            @livewire('navbar-notifications')
+
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        @if (empty(\App\Models\User::first()->avatar))
-                                        <img src="{{ asset('assets/img/logo-semabet.png') }}"
+                                        @if (empty(\App\Models\User::first()->image))
+                                        <img src="{{ asset('assets/img/morada-nova-logo-removebg.png') }}"
                                             alt="logo" class="img img-fluid h-auto rounded-circle">
                                         @else
-                                        <img src="{{ url(\App\Models\User::first()->avatar) }}"
+                                        <img src="{{ url(\App\Models\User::first()->image) }}"
                                             alt="logo" class="img img-fluid h-auto rounded-circle">
                                         @endif
                                     </div>
@@ -248,12 +230,12 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        @if (empty(\App\Models\Configuration::first()->avatar))
-                                                        <img src="{{ asset('assets/img/avatar-gestao-house.jpg') }}"
+                                                        @if (empty(\App\Models\User::first()->image))
+                                                        <img src="{{ asset('assets/img/morada-nova-logo-removebg.png') }}"
                                                             alt="logo"
                                                             class="img img-fluid h-auto rounded-circle">
                                                         @else
-                                                        <img src="{{ url(\App\Models\Configuration::first()->avatar) }}"
+                                                        <img src="{{ url(\App\Models\User::first()->image) }}"
                                                             alt="logo"
                                                             class="img img-fluid h-auto rounded-circle">
                                                         @endif
@@ -296,7 +278,6 @@
                                 </ul>
 
                             </li>
-                            <!--/ User -->
 
                         </ul>
 
@@ -313,7 +294,13 @@
                     <!-- Menu -->
                     <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu flex-grow-0">
                         <div class="container-fluid d-flex h-100">
-                            @include('_inc.menu')
+                            @if(auth()->user()->role === 'SuperAdmin')
+                                @include('_inc.menu-super-admin')
+
+                            @else
+                                @include('_inc.menu')
+                            @endif
+
                         </div>
                     </aside>
                     <!-- / Menu -->

@@ -1,11 +1,6 @@
 <ul class="menu-inner">
-    <li class="menu-item">
-        <a href="javascript:void(0)" class="menu-link">
-            <i class="icon-base ti tabler-user icon-md me-4"></i>
-            <div data-i18n="Inquilinos">Inquilinos</div>
-        </a>
-    </li>
 
+    @canany(['super-admin-access', 'admin-access'])
     <!-- Usuários -->
     <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -34,5 +29,6 @@
             </li>
         </ul>
     </li>
+    @endcanany
 
 </ul>

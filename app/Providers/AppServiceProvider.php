@@ -26,12 +26,12 @@ class AppServiceProvider extends ServiceProvider
 
         // Gate para verificar se é SuperAdmin
         Gate::define('super-admin-access', function ($user) {
-            return $user->nivel === 'SuperAdmin';
+            return $user->role === 'SuperAdmin';
         });
 
         // Gate para verificar se é Aluno
         Gate::define('aluno-access', function ($user) {
-            return $user->nivel === 'Aluno' || $user->nivel === 'SuperAdmin';
+            return $user->role === 'Aluno' || $user->role === 'SuperAdmin';
         });
     }
 }
