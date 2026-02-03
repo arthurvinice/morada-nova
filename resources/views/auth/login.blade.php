@@ -178,10 +178,11 @@
 
             <a href="{{ route('register') }}">
               <span>Registre-se</span>
-            </a> ou entre com o
+            </a> 
+            <!-- ou entre com o
             <a href="#">
               <span> SUAP</span>
-            </a>
+            </a> -->
           </p>
 
         </div>

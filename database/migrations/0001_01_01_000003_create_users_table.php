@@ -13,20 +13,14 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
             $table->string('name');
-            $table->string('level')->default('Aluno');
-            $table->string('school_number')->nullable();
-            $table->string('avatar')->nullable();
-            $table->string('whatsapp')->nullable();
-            $table->boolean('is_ativo')->default(false);
+            $table->string('role')->default('standard');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-
-            $table->unsignedBigInteger('course_id')->nullable();
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

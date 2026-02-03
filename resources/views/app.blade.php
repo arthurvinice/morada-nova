@@ -8,12 +8,12 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Gestão House</title>
+    <title>SEMABET</title>
 
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/logo-semabet-sembg.ico') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -70,15 +70,15 @@
                         <a href="{{ route('admin.dashboard') }}" class="app-brand-link">
 
                             <span class="app-brand-text demo menu-text fw-bold text-heading">
-                                @if (empty(\App\Models\Configuration::first()->avatar))
-                                    <img src="{{ asset('assets/img/logo-gesao-house-png.png') }}" width="150"
-                                        alt="logo" class="img img-fluid h-auto">
+                                @if (empty(\App\Models\User::first()->avatar))
+                                <img src="{{ asset('assets/img/-logo-semabet-sembg.png') }}" width="150"
+                                    alt="logo" class="img img-fluid h-auto">
                                 @else
-                                    <img src="{{ url(\App\Models\Configuration::first()->logo) }}" width="150"
-                                        alt="logo" class="img img-fluid h-auto">
+                                <img src="{{ url(\App\Models\User::first()->avatar) }}" width="150"
+                                    alt="logo" class="img img-fluid h-auto">
                                 @endif
 
-                                {{-- <img src="{{ asset('assets/img/logo-gesao-house-png.png') }}" width="150" alt="logo" class="img img-fluid"> --}}
+                                {{-- <img src="{{ asset('assets/img/logo-semabet-sembg.png') }}" width="150" alt="logo" class="img img-fluid"> --}}
                             </span>
                         </a>
 
@@ -103,37 +103,6 @@
                   </a>
                 </li> --}}
                             <!-- /Search -->
-
-                            {{-- <li class="nav-item dropdown-language dropdown">
-                  <a
-                    class="nav-link dropdown-toggle hide-arrow btn btn-icon btn-text-secondary rounded-pill"
-                    href="javascript:void(0);"
-                    data-bs-toggle="dropdown">
-                    <i class="icon-base ti tabler-language icon-22px text-heading"></i>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <a class="dropdown-item" href="javascript:void(0);" data-language="en" data-text-direction="ltr">
-                        <span>English</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="javascript:void(0);" data-language="fr" data-text-direction="ltr">
-                        <span>French</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="javascript:void(0);" data-language="ar" data-text-direction="rtl">
-                        <span>Arabic</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="javascript:void(0);" data-language="de" data-text-direction="ltr">
-                        <span>German</span>
-                      </a>
-                    </li>
-                  </ul>
-                </li> --}}
                             <!--/ Language -->
 
                             <!-- Style Switcher -->
@@ -156,13 +125,6 @@
                                             data-bs-theme-value="dark" aria-pressed="true">
                                             <span><i class="icon-base ti tabler-moon-stars icon-22px me-3"
                                                     data-icon="moon-stars"></i>Escuro</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="dropdown-item align-items-center"
-                                            data-bs-theme-value="system" aria-pressed="false">
-                                            <span><i class="icon-base ti tabler-device-desktop-analytics icon-22px me-3"
-                                                    data-icon="device-desktop-analytics"></i>Sistema</span>
                                         </button>
                                     </li>
                                 </ul>
@@ -190,7 +152,7 @@
                                                         class="icon-base ti tabler-file-search icon-26px text-heading"></i>
                                                 </span>
                                                 <a href=""
-                                                    class="stretched-link">Demandas</a>
+                                                    class="stretched-link">Jogos</a>
                                             </div>
                                             <div class="dropdown-shortcuts-item col">
                                                 <span class="dropdown-shortcuts-icon rounded-circle mb-3">
@@ -198,7 +160,7 @@
                                                         class="icon-base ti tabler-calendar-week icon-26px text-heading"></i>
                                                 </span>
                                                 <a href=""
-                                                    class="stretched-link">Agendamentos</a>
+                                                    class="stretched-link">Perfil</a>
                                             </div>
                                         </div>
                                         <div class="row row-bordered overflow-visible g-0">
@@ -213,8 +175,8 @@
                                                 <span class="dropdown-shortcuts-icon rounded-circle mb-3">
                                                     <i class="icon-base ti tabler-settings icon-26px text-heading"></i>
                                                 </span>
-                                                <a href="{{ route('admin.configurations.index') }}"
-                                                    class="stretched-link">Configurações</a>
+                                                <a href="#"
+                                                    class="stretched-link">Historico</a>
                                             </div>
                                         </div>
 
@@ -232,27 +194,20 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     @if (auth()->user()->nivel === 'SuperAdmin')
-                                        <li ">
-                                            <a class="dropdown-item" href="{{ route('admin.helpcenter.index') }}">
-                                                        <span class="badge bg-warning text-dark ms-2">Em Dev</span>
+                                    <li ">
+                                            <a class=" dropdown-item" href="{{ route('admin.helpcenter.index') }}">
+                                        <span class="badge bg-warning text-dark ms-2">Em Dev</span>
 
-                                                <i class="menu-icon icon-base ti tabler-help-circle"></i>
-                                                <span class="align-middle">Central de Ajuda</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="dropdown-divider"></div>
-                                        </li>
-
-                                    @endif
-
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('admin.suporte.ticket.index') }}">
-                                            <i class="menu-icon icon-base ti tabler-ticket"></i>
-                                            <span class="align-middle">Tickets</span>
+                                        <i class="menu-icon icon-base ti tabler-help-circle"></i>
+                                        <span class="align-middle">Central de Ajuda</span>
                                         </a>
                                     </li>
+
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+
+                                    @endif
 
                                     <li>
                                         <div class="dropdown-divider"></div>
@@ -278,11 +233,11 @@
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
                                         @if (empty(\App\Models\User::first()->avatar))
-                                            <img src="{{ asset('assets/img/logo-semabet.png') }}"
-                                                alt="logo" class="img img-fluid h-auto rounded-circle">
+                                        <img src="{{ asset('assets/img/logo-semabet.png') }}"
+                                            alt="logo" class="img img-fluid h-auto rounded-circle">
                                         @else
-                                            <img src="{{ url(\App\Models\User::first()->avatar) }}"
-                                                alt="logo" class="img img-fluid h-auto rounded-circle">
+                                        <img src="{{ url(\App\Models\User::first()->avatar) }}"
+                                            alt="logo" class="img img-fluid h-auto rounded-circle">
                                         @endif
                                     </div>
                                 </a>
@@ -294,13 +249,13 @@
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
                                                         @if (empty(\App\Models\Configuration::first()->avatar))
-                                                            <img src="{{ asset('assets/img/avatar-gestao-house.jpg') }}"
-                                                                alt="logo"
-                                                                class="img img-fluid h-auto rounded-circle">
+                                                        <img src="{{ asset('assets/img/avatar-gestao-house.jpg') }}"
+                                                            alt="logo"
+                                                            class="img img-fluid h-auto rounded-circle">
                                                         @else
-                                                            <img src="{{ url(\App\Models\Configuration::first()->avatar) }}"
-                                                                alt="logo"
-                                                                class="img img-fluid h-auto rounded-circle">
+                                                        <img src="{{ url(\App\Models\Configuration::first()->avatar) }}"
+                                                            alt="logo"
+                                                            class="img img-fluid h-auto rounded-circle">
                                                         @endif
                                                     </div>
                                                 </div>
