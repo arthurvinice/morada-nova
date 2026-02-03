@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HelpCenterController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
@@ -21,6 +22,9 @@ Route::get('/', function () {
 
 
 Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
+
+    //inqulinos
+    Route::get('/inquilinos', [PeopleController::class, 'index'])->name('people.index');
 
     //notificações
     Route::get('/notificacoes', [NotificationController::class, 'index'])->name('notification.index');

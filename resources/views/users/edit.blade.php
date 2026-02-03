@@ -70,12 +70,12 @@
                                     <i class="menu-icon icon-base ti tabler-brand-whatsapp"></i>
                                 </span>
 
-                                <input name="whatsapp" value="{{ $user->whatsapp }}" type="text" class="form-control phone_with_ddd" id="basic-icon-default-fullname"
+                                <input name="phone" value="{{ $user->phone }}" type="text" class="form-control phone_with_ddd" id="basic-icon-default-fullname"
                                     placeholder="(xx) xxxxx-xxxx" aria-label="João de Maria"
                                     aria-describedby="basic-icon-default-fullname2" />
                             </div>
 
-                            @error('whatsapp')
+                            @error('phone')
                                 <div class="alert alert-warning small mt-1">{{ $message }}</div>
                             @enderror
                         </div>
@@ -140,8 +140,8 @@
                                 <div class="col-md mb-md-0 mb-5">
                                     <div class="form-check custom-option custom-option-basic">
                                         <label class="form-check-label custom-option-content" for="customRadioTemp1">
-                                            <input name="is_ativo" class="form-check-input" type="radio" value="Inativo" id="customRadioTemp1"
-                                                {{ $user->is_ativo == '0' ? 'checked' : '' }} />
+                                            <input name="status" class="form-check-input" type="radio" value="inactive" id="customRadioTemp1"
+                                                {{ $user->status == 'inactive' ? 'checked' : '' }} />
                                             <span class="custom-option-header">
                                                 <span class="h6 mb-0">Inativo</span>
                                             </span>
@@ -154,8 +154,8 @@
                                 <div class="col-md">
                                     <div class="form-check custom-option custom-option-basic">
                                         <label class="form-check-label custom-option-content" for="customRadioTemp2">
-                                            <input name="is_ativo" class="form-check-input" type="radio" value="Ativo" id="customRadioTemp2"
-                                            {{ $user->is_ativo == '1' ? 'checked' : '' }}/>
+                                            <input name="status" class="form-check-input" type="radio" value="active" id="customRadioTemp2"
+                                            {{ $user->status == 'active' ? 'checked' : '' }}/>
                                             <span class="custom-option-header">
                                                 <span class="h6 mb-0">Ativo</span>
                                             </span>
@@ -166,7 +166,7 @@
                                     </div>
                                 </div>
 
-                                @error('is_ativo')
+                                @error('status')
                                     <div class="alert alert-warning small mt-1">{{ $message }}</div>
                                 @enderror
 
@@ -179,26 +179,24 @@
                     <br>
 
                     <div class="row mb-6">
-                        <label class="col-sm-2 col-form-label" for="nivel-user">Nível</label>
+                        <label class="col-sm-2 col-form-label" for="role-user">Nível</label>
                         <div class="col-sm-10">
-                            <select name="nivel" id="nivel-user" class="select2 form-select" data-allow-clear="true">
+                            <select name="role" id="role-user" class="select2 form-select" data-allow-clear="true">
 
                                 <option value="">Selecione um Nível</option>
-                                <option value="Recepção" {{ $user->nivel =='Recepção' ? 'selected' : '' }}>Recepção</option>
-                                <option value="Marketing" {{ $user->nivel =='Marketing' ? 'selected' : '' }}>Marketing</option>
-                                <option value="Assessor Externo" {{ $user->nivel =='Assessor Externo' ? 'selected' : '' }}>Assessor Externo</option>
-                                <option value="Assessor Interno" {{ $user->nivel =='Assessor Interno' ? 'selected' : '' }}>Assessor Interno</option>
-                                <option value="Administrador" {{ $user->nivel == 'Administrador' ? 'selected' : '' }}>Administrador</option>
+                                <option value="Padrão" {{ $user->role =='Padrão' ? 'selected' : '' }}>Padrão</option>
+                                
+                                <option value="Administrador" {{ $user->role == 'Administrador' ? 'selected' : '' }}>Administrador</option>
 
-                                @if ( Auth::user()->nivel == 'SuperAdmin')
+                                @if ( Auth::user()->role == 'SuperAdmin')
 
-                                    <option value="Agente Político" {{ $user->nivel == 'SuperAdmin' ? 'selected' : '' }}>SuperAdmin</option>
+                                    <option value="SuperAdmin" {{ $user->role == 'SuperAdmin' ? 'selected' : '' }}>SuperAdmin</option>
 
                                 @endif
 
                             </select>
 
-                            @error('nivel')
+                            @error('role')
                                 <div class="alert alert-warning small mt-1">{{ $message }}</div>
                             @enderror
                         </div>

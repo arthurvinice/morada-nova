@@ -363,6 +363,7 @@
     <script src="{{ asset('assets/vendor/libs/@algolia/autocomplete-js.js') }}"></script>
 
     <script src="{{ asset('assets/vendor/libs/pickr/pickr.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/pickr/pickr-themes.js') }}"></script>
 
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect') }}-scrollbar.js"></script>
 

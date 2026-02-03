@@ -31,7 +31,6 @@
                 <tr>
                     <th>#ID</th>
                     <th>Nome</th>
-                    <th>Setor</th>
                     <th>Nível</th>
                     <th>Situação</th>
                     <th>Ações</th>
@@ -46,13 +45,11 @@
 
                     <td>{{ $user->name }}</td>
 
-                    <td>{{ $user->department?->nome }}</td>
-
-                    <td><span class="badge bg-label-success me-1">{{ $user->nivel}}</span></td>
+                    <td><span class="badge bg-label-success me-1">{{ $user->role}}</span></td>
 
                     <td>
 
-                        @if (!$user->is_ativo)
+                        @if (!$user->status)
                             <span class="badge bg-label-danger me-1">Inativo</span>
                         @else
                             <span class="badge bg-label-success me-1">Ativo</span>

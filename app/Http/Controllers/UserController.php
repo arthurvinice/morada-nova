@@ -9,6 +9,7 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -23,18 +24,12 @@ class UserController extends Controller
 
         if ($logado->nivel == 'SuperAdmin') {
             $users = User::orderBy('id', 'desc')
-                        ->where('is_ativo', true)
-                        ->paginate(10);
-        } else {
-            $users = User::where('departamento_id',$logado->departamento_id)
-                        ->where('is_ativo', true)
-                        ->orderBy('id', 'desc')
-                        ->paginate(10);
+                ->where('is_ativo', true)
+                ->paginate(10);
         }
 
         // $users = User::orderBy('id', 'desc')->paginate(10);
         return view('users.index', compact('users'));
-
     }
 
     /**
@@ -44,11 +39,9 @@ class UserController extends Controller
     {
         $user = auth()->user();
 
-        $departamento = $user->departamento_id;
 
-        $departamentos = Department::all();
 
-        return view('users.create', compact('departamento', 'departamentos'));
+        return view('users.create');
     }
 
     /**
@@ -56,43 +49,46 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
+            'cpf' => 'required|string|unique:users,cpf',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
-            'nivel' => 'required|string',
-            'whatsapp' => 'nullable|string|max:20',
-            'departamento_id' => 'required|integer',
+            'role' => 'required|string',
+            'phone' => 'nullable|string|max:20',
+            'status' => 'required|string',
+            'image' => 'nullable|string',
         ]);
 
-        $user = new User();
+        DB::beginTransaction();
 
-        // if($request->is_admin == 1){
-        //     $user->is_admin = true;
-        // }else{
-        //     $user->is_admin = false;
-        // }
+        try {
+            $user = new User();
 
-        if($request->is_ativo == 'Ativo'){
-            $user->is_ativo = true;
-        }else{
-            $user->is_ativo = false;
+            if ($request->status == 'active') {
+                $user->status = true;
+            } else {
+                $user->status = false;
+            }
+
+            $user->name = $request->name;
+            $user->cpf = $request->cpf;
+            $user->phone = $request->phone;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->role = $request->role;
+            $user->whatsapp = $request->whatsapp;
+            $user->image = $request->image;
+
+            $user->email_verified_at = now();
+
+            $user->save();
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Erro ao criar usuário: ' . $e->getMessage());
         }
-
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->nivel = $request->nivel;
-        $user->whatsapp = $request->whatsapp;
-
-        if (Auth::user()->nivel == 'SuperAdmin') {
-            $user->departamento_id = $request->departamento_id;
-        } else {
-            $user->departamento_id = Auth::user()->departamento_id;
-        }
-        $user->email_verified_at = now();
-
-        $user->save();
 
         return redirect()->route('admin.user.index')->with('success', 'Usuário criado com sucesso!');
     }
@@ -114,10 +110,8 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        if (Auth::user()->nivel != 'SuperAdmin' ) {
-            if (Auth::user()->departamento_id != $user->departamento_id){
-                return redirect()->back()->with('warning','Você não tem permissão para isso');
-            }
+        if (auth()->user()->id !== $user->id && auth()->user()->nivel !== 'SuperAdmin') {
+            return redirect()->route('admin.user.index')->with('warning', 'Acesso negado!');
         }
 
         return view('users.edit', compact('user'));
@@ -129,24 +123,24 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, string $id)
     {
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
+
 
         $user->name = $request->name;
-        $user->nivel = $request->nivel;
+        $user->role = $request->role;
         $user->whatsapp = $request->whatsapp;
 
-        if ($request->is_ativo == 'Ativo') {
-            $user->is_ativo = true;
+        if ($request->status == 'Ativo') {
+            $user->status = true;
         } else {
-            $user->is_ativo = false;
+            $user->status = false;
         }
 
         $user->email = $request->email;
 
-        if($request->password){
+        if ($request->password) {
             $user->password = Hash::make($request->password);
         }
-
 
         $user->save();
 
@@ -160,7 +154,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        if(!Hash::check($request->currentPassword, $user->password)){
+        if (!Hash::check($request->currentPassword, $user->password)) {
             return redirect()->back()->with('warning', 'A sua senha atuação não confere, tentar novamente.');
         }
 
@@ -184,13 +178,13 @@ class UserController extends Controller
 
         if ($logado->nivel == 'SuperAdmin') {
             $users = User::orderBy('id', 'desc')
-                        ->where('is_ativo', false)
-                        ->paginate(10);
+                ->where('is_ativo', false)
+                ->paginate(10);
         } else {
-            $users = User::where('departamento_id',$logado->departamento_id)
-                        ->where('is_ativo', false)
-                        ->orderBy('id', 'desc')
-                        ->paginate(10);
+            $users = User::where('departamento_id', $logado->departamento_id)
+                ->where('is_ativo', false)
+                ->orderBy('id', 'desc')
+                ->paginate(10);
         }
         return view('users.inativos', compact('users'));
     }
