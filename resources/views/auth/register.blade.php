@@ -63,12 +63,11 @@
                     <div class="card-body">
                         <!-- Logo -->
                         <div class="app-brand justify-content-center mb-4 mt-2">
-                            <img src="{{ asset('assets/img/logo-semabet.png')}}" alt="img-fluid mb-4" width="100">
+                            <img src="{{ asset('assets/img/morada-nova-logo-removebg.png')}}" alt="img-fluid mb-4" width="100">
 
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-1 pt-2 text-center">SEMABET - As melhores Odds!</h4>
-                        <p class="mb-4 text-center">Aposte com a gente!</p>
+                        <h4 class="mb-1 pt-2 text-center">Morada Nova - Gestão Imobiliária</h4>
 
                         @if($errors->all())
 
