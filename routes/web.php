@@ -25,6 +25,9 @@ Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
 
     //inqulinos
     Route::get('/inquilinos', [PeopleController::class, 'index'])->name('people.index');
+    Route::get('/inquilinos/cadastrar', [PeopleController::class, 'create'])->name('people.create');
+    Route::get('/inquilinos/{id}/editar', [PeopleController::class, 'edit'])->name('people.edit');
+
 
     //notificações
     Route::get('/notificacoes', [NotificationController::class, 'index'])->name('notification.index');

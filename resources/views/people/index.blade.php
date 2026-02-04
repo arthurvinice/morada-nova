@@ -7,6 +7,7 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
     <link href="{{ asset('assets/vendor/libs/select2/select2.css') }}" rel="stylesheet" />
+    <link href="{{asset('assets/vendor/fonts/fontawesome.css')}}" rel="stylesheet" />
 
 @endpush
 

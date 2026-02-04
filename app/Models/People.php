@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class People extends Model
 {
+    use HasFactory, Notifiable;
+
     protected $table = 'people';
 
     protected $fillable = [
@@ -24,6 +29,6 @@ class People extends Model
 
     public function contracts()
     {
-        return $this->hasMany(Contract::class);
+        return $this->hasOne(Contract::class);
     }
 }
