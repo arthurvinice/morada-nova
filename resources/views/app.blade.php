@@ -323,8 +323,8 @@
                                     <script>
                                         document.write(new Date().getFullYear());
                                     </script>
-                                    , feito com ❤️ por <a href="https://housecriative.com.br" target="_blank"
-                                        class="footer-link">House Criative</a>
+                                    , feito por <a href="https://github.com/arthurvinice" target="_blank"
+                                        class="footer-link">Arthur Vinícius</a>
                                 </div>
                                 <div>
                                     <a href="{{ route('admin.changelog.index') }}">Versão: 1.0.0</a>
