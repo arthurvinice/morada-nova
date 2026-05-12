@@ -243,7 +243,7 @@
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <span class="fw-medium d-block">{{ auth()->user()->name }}</span>
-                                                    <small class="text-muted">{{ auth()->user()->nivel }}</small>
+                                                    <small class="text-muted">{{ auth()->user()->role }}</small>
                                                 </div>
                                             </div>
                                         </a>

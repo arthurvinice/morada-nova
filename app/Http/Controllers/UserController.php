@@ -20,16 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $logado = Auth::user();
-
-        if ($logado->nivel == 'SuperAdmin') {
-            $users = User::orderBy('id', 'desc')
-                ->where('is_ativo', true)
-                ->paginate(10);
-        }
-
-        // $users = User::orderBy('id', 'desc')->paginate(10);
-        return view('users.index', compact('users'));
+        return view('users.index');
     }
 
     /**
