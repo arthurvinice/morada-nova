@@ -1,4 +1,4 @@
-<div class="navbar-nav-right d-flex align-items-center" wire:poll.5s="loadNotifications">
+<div class="navbar-nav-right d-flex align-items-center" wire:poll.60s="loadNotifications">
     <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
         <a class="nav-link dropdown-toggle hide-arrow btn btn-icon btn-text-secondary rounded-pill" href="#"
             data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
