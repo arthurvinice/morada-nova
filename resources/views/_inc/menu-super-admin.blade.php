@@ -1,6 +1,5 @@
 <ul class="menu-inner">
 
-    @canany(['super-admin-access', 'admin-access'])
     <!-- Usuários -->
     <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -29,6 +28,5 @@
             </li>
         </ul>
     </li>
-    @endcanany
 
 </ul>

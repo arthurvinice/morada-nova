@@ -28,29 +28,30 @@
     <div class="card">
 
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5>Clientes</h5>
+            <h5>Usuários</h5>
             <div class="text-muted fs-6">
                 <div class="d-flex align-items-center gap-3">
                     <div class="position-relative" style="width: 350px;">
-                        <input type="text" class="form-control" placeholder="Buscar por nome ou CPF do cliente..."
+                        <input type="text" class="form-control" placeholder="Buscar por nome ou email do usuário..."
                             wire:model.live.debounce.500ms="busca" style="padding-right: 2.5rem;">
                         @if ($busca)
                         <span class="position-absolute top-50 translate-middle-y"
                             style="right: 10px; cursor: pointer; z-index: 10;" wire:click="$set('busca', '')">
-                            <i class="ti ti-x"></i>
+                            <i class="inco-base ti tabler-x"></i>
                         </span>
                         @endif
                     </div>
 
-                    <button
-                        class="btn btn-secondary btn-lg flex-shrink-0 d-flex align-items-center justify-content-center p-2"
-                        data-bs-toggle="offcanvas" data-bs-target="#filtros">
-                        <i class="tf-icons ti ti-filter"></i>
-                    </button>
+                    <select id="defaultSelect" class="form-select" wire:model.live="filtroStatus" style="width: 150px;">
+                        <option>Status</option>
+                        <option value="active">Ativo</option>
+                        <option value="inactive">Inativo</option>
+                    </select>
+
                     <button wire:click="limparFiltros"
                         class="btn btn-outline-secondary btn-lg flex-shrink-0 d-flex align-items-center justify-content-center p-2"
-                        title="Atualizar">
-                        <i class="tf-icons ti ti-refresh" wire:loading.class="ti-spin" wire:target="limparFiltros"></i>
+                        title="Resetar filtros">
+                        <i class="tf-icons ti tabler-refresh" wire:loading.class="tabler-spin" wire:target="limparFiltros"></i>
                     </button>
 
                 </div>
@@ -64,13 +65,13 @@
                         <th>#ID</th>
                         <th>Nome</th>
                         <th>Nível</th>
-                        <th>Situação</th>
+                        <th>Status</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
 
-                    @foreach ($users as $user)
+                    @forelse ($users as $user)
 
                     <tr>
                         <td>#{{ $user->id }}</td>
@@ -98,7 +99,13 @@
                         </td>
                     </tr>
 
-                    @endforeach
+                    @empty
+
+                        <tr>
+                            <td colspan="5" class="text-center">Nenhum usuário encontrado</td>
+                        </tr>
+
+                    @endforelse
 
                 </tbody>
             </table>
