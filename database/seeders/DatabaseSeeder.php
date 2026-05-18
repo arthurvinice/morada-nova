@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
+        
+
         User::factory()->create([
             'uuid' => Str::uuid(),
             'name' => 'Arthur Vinícius',
@@ -48,6 +50,11 @@ class DatabaseSeeder extends Seeder
             ['nome' => 'Melhoria de Performance'],
             ['nome' => 'Atualização de Segurança'],
             ['nome' => 'Mudança na Interface'],
+        ]);
+
+        $this->call([
+            PeopleSeeder::class,
+            PropertySeeder::class,
         ]);
 
     }
