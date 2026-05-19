@@ -7,4 +7,11 @@
         </a>
     </li>
 
+    <li class="menu-item">
+        <a href="{{ route('admin.properties.index') }}" class="menu-link">
+            <i class="icon-base ti tabler-building icon-md me-4"></i>
+            <div data-i18n="Propriedades">Propriedades</div>
+        </a>
+    </li>
+
 </ul>

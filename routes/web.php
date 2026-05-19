@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\DashboardController;
@@ -22,6 +23,11 @@ Route::get('/', function () {
 
 
 Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
+
+    //propriedades
+    Route::get('/propriedades', [BuildingController::class, 'index'])->name('properties.index');
+    Route::get('/propriedades/cadastrar', [BuildingController::class, 'create'])->name('properties.create');
+    Route::get('/propriedades/{id}/editar', [BuildingController::class, 'edit'])->name('properties.edit');
 
     //inqulinos
     Route::get('/inquilinos', [PeopleController::class, 'index'])->name('people.index');

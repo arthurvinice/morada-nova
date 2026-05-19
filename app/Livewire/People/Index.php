@@ -14,7 +14,9 @@ class Index extends Component
         if (auth()->user()->role == 'SuperAdmin') {
             $people = People::all();
         } else {
-            $people = People::where('user_id', auth()->user()->id)->get();
+            $people = People::where('user_id', auth()->user()->id)
+                ->with('contracts.property')
+                ->get();
         }
         return view('livewire.people.index', [
             'people' => $people
