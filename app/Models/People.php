@@ -29,6 +29,6 @@ class People extends Model
 
     public function contracts()
     {
-        return $this->hasOne(Contract::class);
+        return $this->hasMany(Contract::class);
     }
 }

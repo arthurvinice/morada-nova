@@ -13,4 +13,9 @@ class Terms extends Model
         'content',
         'version',
     ];
+
+    public function acceptances()
+    {
+        return $this->hasMany(AcceptedTerms::class, 'term_id');
+    }
 }

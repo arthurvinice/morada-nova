@@ -25,7 +25,7 @@
                             <a href="{{route('admin.people.edit', $p->id)}}">{{$p->name}}</a>
                         </td>
                         <td>
-                            <p></p>
+                            <p>{{$p->contracts->}}</p>
                         </td>
                         <td>
                             {{$p->phone}}
