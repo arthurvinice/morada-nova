@@ -15,7 +15,7 @@ class Index extends Component
             $people = People::all();
         } else {
             $people = People::where('user_id', auth()->user()->id)
-                ->with('contracts.property')
+                ->with('contracts.property', 'activeContract.property')
                 ->get();
         }
         return view('livewire.people.index', [

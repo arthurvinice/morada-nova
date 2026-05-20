@@ -31,4 +31,9 @@ class People extends Model
     {
         return $this->hasMany(Contract::class);
     }
+
+    public function activeContract()
+    {
+        return $this->hasOne(Contract::class)->where('status', 'active');
+    }
 }

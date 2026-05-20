@@ -25,7 +25,13 @@
                             <a href="{{route('admin.people.edit', $p->id)}}">{{$p->name}}</a>
                         </td>
                         <td>
-                            <p>{{$p->contracts->}}</p>
+                            @if($p->activeContract?->property)
+                            {{ $p->activeContract->property->street }}, {{ $p->activeContract->property->number }}
+                            <br>
+                            <small class="text-muted">{{ $p->activeContract->property->city }}</small>
+                            @else
+                            <span class="text-muted">—</span>
+                            @endif
                         </td>
                         <td>
                             {{$p->phone}}
