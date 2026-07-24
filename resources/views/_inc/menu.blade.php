@@ -1,7 +1,7 @@
 <ul class="menu-inner">
 
     <li class="menu-item {{ request()->routeIs('admin.people.*') ? 'active open' : '' }}">
-        <a href="#" class="menu-link">
+        <a href="#" class="menu-link menu-toggle">
             <i class="icon-base ti tabler-users-group icon-md me-2"></i>
             <div data-i18n="Inquilinos">Inquilinos</div>
         </a>

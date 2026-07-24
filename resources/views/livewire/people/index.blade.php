@@ -37,15 +37,17 @@
                             {{$p->phone}}
                         </td>
                         <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                    <i class="icon-base ti tabler-dots-vertical"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item waves-effect" href="javascript:void(0);"><i class="icon-base ti tabler-pencil me-1"></i> Editar</a>
-                                    <a class="dropdown-item waves-effect" href="javascript:void(0);"><i class="icon-base ti tabler-trash me-1"></i> Deletar</a>
-                                </div>
-                            </div>
+
+                            <a class="btn rounded-pill btn-outline-secondary waves-effect btn-sm"
+                                href="javascript:void(0);">
+                                <i class="icon-base ti tabler-pencil"></i>
+                            </a>
+
+                            <a class="btn rounded-pill btn-outline-danger waves-effect btn-sm"
+                                href="javascript:void(0);">
+                                <i class="icon-base ti tabler-trash "></i>
+                            </a>
+
                         </td>
                     </tr>
 
