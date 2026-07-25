@@ -53,7 +53,6 @@ Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
     Route::get('usuarios/', [UserController::class, 'index'])->middleware('can:super-admin-access')->name('user.index');
     Route::get('usuarios/criar', [UserController::class, 'create'])->middleware('can:super-admin-access')->name('user.create');
     Route::get('usuarios/{id}/editar', [UserController::class, 'edit'])->middleware('can:user-access')->name('user.edit');
-    Route::get('usuarios/inativos', [UserController::class, 'usersInativos'])->middleware('can:super-admin-access')->name('user.inativos');
     Route::post('usuarios/store', [UserController::class, 'store'])->middleware('can:user-access')->name('user.store');
     Route::get('usuario/{id}', [UserController::class, 'show'])->middleware('can:user-access')->name('user.perfil.show');
     Route::put('usuario/update/{id}', [UserController::class, 'update'])->middleware('can:user-access')->name('user.perfil.update');

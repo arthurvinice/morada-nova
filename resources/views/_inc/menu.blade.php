@@ -41,6 +41,29 @@
                     <div data-i18n="Nova Propriedade">Nova Propriedade</div>
                 </a>
             </li>
+        </ul>
+    </li>
+
+    <li class="menu-item {{ request()->routeIs('admin.users.*') ? 'active open' : '' }}">
+        <a href="{{ route('admin.users.index') }}" class="menu-link menu-toggle">
+            <i class="icon-base ti tabler-history icon-md me-2"></i>
+            <div data-i18n="Usuários">Usuários</div>
+        </a>
+
+        <ul class="menu-sub">
+            <li class="menu-item {{ request()->routeIs('admin.users.index') ? 'active open' : '' }}">
+                <a href="{{ route('admin.users.index') }}" class="menu-link">
+                    <i class="menu-icon icon-base ti tabler-list"></i>
+                    <div data-i18n="Listar">Listar</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->routeIs('admin.users.create') ? 'active open' : '' }}">
+                <a href="{{ route('admin.users.create') }}" class="menu-link">
+                    <i class="menu-icon icon-base ti tabler-pencil-plus"></i>
+                    <div data-i18n="Cadastrar">Cadastrar</div>
+                </a>
+            </li>
+        </ul>
     </li>
 
 </ul>
