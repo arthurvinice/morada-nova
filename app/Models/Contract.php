@@ -2,15 +2,20 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 
 class Contract extends Model
 {
+    use HasUuid;
+
     protected $table = 'contracts';
 
     protected $fillable = [
+        'uuid',
         'start_date',
         'end_date',
+        'payday',
         'rent_value',
         'status',
         'property_id',
@@ -31,7 +36,7 @@ class Contract extends Model
 
     public function people()
     {
-        return $this->belongsTo(People::class, 'people_id');
+        return $this->belongsTo(People::class);
     }
 
     public function user()

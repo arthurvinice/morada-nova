@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-
-            $table->string('type');
+            $table->uuid('uuid')->unique();
+            $table->string('nickname')->nullable();
             $table->string('street');
             $table->string('number');
             $table->string('city');
@@ -27,6 +27,9 @@ return new class extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->unsignedBigInteger('property_type_id');
+            $table->foreign('property_type_id')->references('id')->on('property_types')->restrictOnDelete();
 
             $table->timestamps();
         });

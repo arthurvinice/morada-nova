@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->uuid('uuid')->unique();
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->integer('payday')->default(1);
+            $table->decimal('rent_value', 10, 2);
             $table->string('status')->default('active');
 
             $table->unsignedBigInteger('property_id');

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        
+
 
         User::factory()->create([
             'uuid' => Str::uuid(),
@@ -34,14 +34,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-           'uuid' => Str::uuid(),
-           'name' => 'Administrador teste',
-           'role' => 'Administrador',
-           'status' => 'active',
-           'email' => 'admin@teste.com',
-           'email_verified_at' => now(),
-           'password' => Hash::make('password'),
-           'remember_token' => Str::random(10),
+            'uuid' => Str::uuid(),
+            'name' => 'Administrador teste',
+            'role' => 'Administrador',
+            'status' => 'active',
+            'email' => 'admin@teste.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
         ]);
 
         ChangelogCategory::factory()->createMany([
@@ -53,9 +53,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
+            PropertyTypeSeeder::class,
             PeopleSeeder::class,
             PropertySeeder::class,
         ]);
-
     }
 }
