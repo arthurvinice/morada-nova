@@ -118,57 +118,7 @@
                                 </ul>
                             </li> -->
 
-                            <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown">
-                                <a class="nav-link dropdown-toggle hide-arrow btn btn-icon btn-text-secondary rounded-pill"
-                                    href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                    aria-expanded="false">
-                                    <i class="icon-base ti tabler-layout-grid-add icon-22px text-heading"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end p-0">
-                                    <div class="dropdown-menu-header border-bottom">
-                                        <div class="dropdown-header d-flex align-items-center py-3">
-                                            <h6 class="mb-0 me-auto">Atalhos</h6>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-shortcuts-list scrollable-container">
-                                        <div class="row row-bordered overflow-visible g-0">
-                                            <div class="dropdown-shortcuts-item col">
-                                                <span class="dropdown-shortcuts-icon rounded-circle mb-3">
-                                                    <i
-                                                        class="icon-base ti tabler-file-search icon-26px text-heading"></i>
-                                                </span>
-                                                <a href=""
-                                                    class="stretched-link">Jogos</a>
-                                            </div>
-                                            <div class="dropdown-shortcuts-item col">
-                                                <span class="dropdown-shortcuts-icon rounded-circle mb-3">
-                                                    <i
-                                                        class="icon-base ti tabler-calendar-week icon-26px text-heading"></i>
-                                                </span>
-                                                <a href=""
-                                                    class="stretched-link">Perfil</a>
-                                            </div>
-                                        </div>
-                                        <div class="row row-bordered overflow-visible g-0">
-                                            <div class="dropdown-shortcuts-item col">
-                                                <span class="dropdown-shortcuts-icon rounded-circle mb-3">
-                                                    <i class="icon-base ti tabler-user icon-26px text-heading"></i>
-                                                </span>
-                                                <a href="{{ route('admin.user.index') }}"
-                                                    class="stretched-link">Usuários</a>
-                                            </div>
-                                            <div class="dropdown-shortcuts-item col">
-                                                <span class="dropdown-shortcuts-icon rounded-circle mb-3">
-                                                    <i class="icon-base ti tabler-settings icon-26px text-heading"></i>
-                                                </span>
-                                                <a href="#"
-                                                    class="stretched-link">Historico</a>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </li>
+                            @livewire('navbar-notifications')
 
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow btn btn-icon btn-text-secondary rounded-pill"
@@ -207,8 +157,6 @@
                                 </ul>
 
                             </li>
-
-                            @livewire('navbar-notifications')
 
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
