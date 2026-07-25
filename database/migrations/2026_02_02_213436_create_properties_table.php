@@ -20,11 +20,10 @@ return new class extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('zip_code');
+            $table->string('complement')->nullable();
+            $table->text('description')->nullable(); 
             $table->decimal('rent_value', 10, 2)->nullable();
             $table->string('status')->default('available');
-
-            $table->unsignedBigInteger('building_id')->nullable();
-            $table->foreign('building_id')->references('id')->on('buildings')->nullOnDelete();
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

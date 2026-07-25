@@ -12,17 +12,17 @@
     </nav>
 
     @if (session()->has('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
     @endif
 
     @if (session()->has('error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
     @endif
 
     <div class="row d-flex justify-content-center">
@@ -40,7 +40,7 @@
                                     class="form-control @error('name') is-invalid @enderror"
                                     placeholder="Ex.: João Silva" />
                                 @error('name')
-                                    <div class="alert alert-warning small mt-1">{{ $message }}</div>
+                                <div class="alert alert-warning small mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -50,7 +50,7 @@
                                     class="form-control @error('cpf') is-invalid @enderror"
                                     placeholder="Ex.: 000.000.000-00" x-mask="999.999.999-99" />
                                 @error('cpf')
-                                    <div class="alert alert-warning small mt-1">{{ $message }}</div>
+                                <div class="alert alert-warning small mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -60,7 +60,7 @@
                                     class="form-control @error('phone') is-invalid @enderror"
                                     placeholder="Ex.: (84) 99999-9999" x-mask="(99) 99999-9999" />
                                 @error('phone')
-                                    <div class="alert alert-warning small mt-1">{{ $message }}</div>
+                                <div class="alert alert-warning small mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -70,17 +70,22 @@
                                     class="form-control @error('email') is-invalid @enderror"
                                     placeholder="Ex.: joao@email.com" />
                                 @error('email')
-                                    <div class="alert alert-warning small mt-1">{{ $message }}</div>
+                                <div class="alert alert-warning small mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <label class="form-label" for="document">Documento</label>
-                                <input type="text" wire:model="document" id="document"
-                                    class="form-control @error('document') is-invalid @enderror"
-                                    placeholder="Ex.: RG, CNH..." />
+                                <input type="file" wire:model="document" id="document"
+                                    class="form-control @error('document') is-invalid @enderror" />
+                                <div wire:loading wire:target="document" class="small text-muted mt-1">Enviando arquivo...</div>
+                                @if ($people->document)
+                                <div class="small mt-1">
+                                    Atual: <a href="{{ Storage::disk('public')->url($people->document) }}" target="_blank">visualizar documento</a>
+                                </div>
+                                @endif
                                 @error('document')
-                                    <div class="alert alert-warning small mt-1">{{ $message }}</div>
+                                <div class="alert alert-warning small mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -103,5 +108,5 @@
 </div>
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js" defer></script>
 @endpush

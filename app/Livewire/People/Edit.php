@@ -4,11 +4,15 @@ namespace App\Livewire\People;
 
 use App\Models\People;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
-    public People $person;
+    use WithFileUploads;
+
+    public People $people;
 
     public $name;
     public $cpf;
@@ -16,48 +20,59 @@ class Edit extends Component
     public $email;
     public $document;
 
-    protected function rules()
+    protected $messages = [
+        'name.required'   => 'O nome é obrigatório.',
+        'cpf.required'    => 'O CPF é obrigatório.',
+        'cpf.unique'      => 'Este CPF já está cadastrado.',
+        'phone.required'  => 'O telefone é obrigatório.',
+        'email.email'     => 'Informe um e-mail válido.',
+        'document.mimes'  => 'O documento deve ser PDF, JPG ou PNG.',
+        'document.max'    => 'O documento não pode ultrapassar 5MB.',
+    ];
+
+    public function rules(): array
     {
         return [
             'name'     => 'required|string|max:255',
-            'cpf'      => 'required|string|max:14|unique:people,cpf,' . $this->person->id,
+            'cpf'      => 'required|string|max:14|unique:people,cpf,' . $this->people->id,
             'phone'    => 'required|string|max:20',
             'email'    => 'nullable|email|max:255',
-            'document' => 'nullable|string|max:255',
+            'document' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:5120',
         ];
     }
 
-    protected $messages = [
-        'name.required'  => 'O nome é obrigatório.',
-        'cpf.required'   => 'O CPF é obrigatório.',
-        'cpf.unique'     => 'Este CPF já está cadastrado.',
-        'phone.required' => 'O telefone é obrigatório.',
-        'email.email'    => 'Informe um e-mail válido.',
-    ];
-
-    public function mount(People $person)
+    public function mount(People $people)
     {
-        $this->person   = $person;
-        $this->name     = $person->name;
-        $this->cpf      = $person->cpf;
-        $this->phone    = $person->phone;
-        $this->email    = $person->email;
-        $this->document = $person->document;
+        $this->people = $people;
+        $this->name = $people->name;
+        $this->cpf = $people->cpf;
+        $this->phone = $people->phone;
+        $this->email = $people->email;
     }
 
     public function update()
     {
         $this->validate();
 
+        $documentPath = $this->people->document;
+
         DB::beginTransaction();
 
         try {
-            $this->person->update([
+            if ($this->document) {
+                if ($this->people->document) {
+                    Storage::disk('public')->delete($this->people->document);
+                }
+
+                $documentPath = $this->document->store('people_documents', 'public');
+            }
+
+            $this->people->update([
                 'name'     => $this->name,
                 'cpf'      => $this->cpf,
                 'phone'    => $this->phone,
                 'email'    => $this->email,
-                'document' => $this->document,
+                'document' => $documentPath,
             ]);
 
             DB::commit();
