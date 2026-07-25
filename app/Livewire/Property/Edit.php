@@ -5,19 +5,20 @@ namespace App\Livewire\Property;
 use App\Models\Property;
 use App\Models\PropertyType;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
 class Edit extends Component
 {
     public Property $property;
 
-    public $nickname;
+    public $zip_code;
     public $street;
     public $number;
+    public $complement;
     public $city;
     public $state;
-    public $zip_code;
-    public $complement;
+    public $nickname;
     public $description;
     public $rent_value;
     public $status;
@@ -25,12 +26,12 @@ class Edit extends Component
 
     protected $rules = [
         'nickname'          => 'nullable|string|max:255',
+        'zip_code'          => 'required|string|max:10',
         'street'            => 'required|string|max:255',
         'number'            => 'required|string|max:20',
+        'complement'        => 'nullable|string|max:255',
         'city'              => 'required|string|max:255',
         'state'             => 'required|string|max:2',
-        'zip_code'          => 'required|string|max:10',
-        'complement'        => 'nullable|string|max:255',
         'description'       => 'nullable|string',
         'rent_value'        => 'nullable|numeric|min:0',
         'status'            => 'required|string|in:available,rented,maintenance',
@@ -38,11 +39,11 @@ class Edit extends Component
     ];
 
     protected $messages = [
+        'zip_code.required'         => 'O CEP é obrigatório.',
         'street.required'           => 'A rua é obrigatória.',
         'number.required'           => 'O número é obrigatório.',
-        'city.required'              => 'A cidade é obrigatória.',
+        'city.required'             => 'A cidade é obrigatória.',
         'state.required'            => 'O estado é obrigatório.',
-        'zip_code.required'         => 'O CEP é obrigatório.',
         'rent_value.numeric'        => 'Informe um valor de aluguel válido.',
         'property_type_id.required' => 'Selecione o tipo do imóvel.',
         'property_type_id.exists'   => 'Tipo de imóvel inválido.',
@@ -58,16 +59,52 @@ class Edit extends Component
 
         $this->property = $property;
         $this->nickname = $property->nickname;
+        $this->zip_code = $property->zip_code;
         $this->street = $property->street;
         $this->number = $property->number;
+        $this->complement = $property->complement;
         $this->city = $property->city;
         $this->state = $property->state;
-        $this->zip_code = $property->zip_code;
-        $this->complement = $property->complement;
         $this->description = $property->description;
         $this->rent_value = $property->rent_value;
         $this->status = $property->status;
         $this->property_type_id = $property->property_type_id;
+    }
+
+    public function buscarCep()
+    {
+        $cepLimpo = preg_replace('/\D/', '', $this->zip_code ?? '');
+
+        if (strlen($cepLimpo) !== 8) {
+            return;
+        }
+
+        try {
+            $response = Http::timeout(5)->get("https://viacep.com.br/ws/{$cepLimpo}/json/");
+
+            if ($response->failed()) {
+                session()->flash('error', 'Erro ao consultar o CEP.');
+                return;
+            }
+
+            $data = $response->json();
+
+            if (isset($data['erro'])) {
+                session()->flash('error', 'CEP não encontrado.');
+                $this->reset(['street', 'city', 'state']);
+                return;
+            }
+
+            $this->street = $data['logradouro'] ?? '';
+            $this->city = $data['localidade'] ?? '';
+            $this->state = $data['uf'] ?? '';
+
+            if (!empty($data['complemento']) && empty($this->complement)) {
+                $this->complement = $data['complemento'];
+            }
+        } catch (\Exception $e) {
+            session()->flash('error', 'Erro ao buscar CEP.');
+        }
     }
 
     public function update()

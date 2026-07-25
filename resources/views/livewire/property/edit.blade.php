@@ -50,10 +50,23 @@
                                     class="form-select @error('property_type_id') is-invalid @enderror">
                                     <option value="">Selecione...</option>
                                     @foreach ($propertyTypes as $type)
-                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('property_type_id')
+                                <div class="alert alert-warning small mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label" for="zip_code">CEP <span class="text-danger">*</span>
+                                    <i class="icon-base ti tabler-info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                        data-bs-original-title="Digite o CEP para preencher o endereço automaticamente"></i>
+                                </label>
+                                <input type="text" wire:model.blur="zip_code" wire:change="buscarCep" id="zip_code"
+                                    class="form-control @error('zip_code') is-invalid @enderror"
+                                    placeholder="Ex.: 59000-000" x-mask="99999-999" />
+                                @error('zip_code')
                                 <div class="alert alert-warning small mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -68,7 +81,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <label class="form-label" for="number">Número <span class="text-danger">*</span></label>
                                 <input type="text" wire:model="number" id="number"
                                     class="form-control @error('number') is-invalid @enderror"
@@ -88,11 +101,11 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label class="form-label" for="city">Cidade <span class="text-danger">*</span></label>
                                 <input type="text" wire:model="city" id="city"
                                     class="form-control @error('city') is-invalid @enderror"
-                                    placeholder="Ex.: Natal" />
+                                    placeholder="Preenchido automaticamente pelo CEP" readonly />
                                 @error('city')
                                 <div class="alert alert-warning small mt-1">{{ $message }}</div>
                                 @enderror
@@ -102,18 +115,8 @@
                                 <label class="form-label" for="state">UF <span class="text-danger">*</span></label>
                                 <input type="text" wire:model="state" id="state" maxlength="2"
                                     class="form-control @error('state') is-invalid @enderror"
-                                    placeholder="Ex.: RN" />
+                                    placeholder="UF" readonly />
                                 @error('state')
-                                <div class="alert alert-warning small mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-3">
-                                <label class="form-label" for="zip_code">CEP <span class="text-danger">*</span></label>
-                                <input type="text" wire:model="zip_code" id="zip_code"
-                                    class="form-control @error('zip_code') is-invalid @enderror"
-                                    placeholder="Ex.: 59000-000" x-mask="99999-999" />
-                                @error('zip_code')
                                 <div class="alert alert-warning small mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
