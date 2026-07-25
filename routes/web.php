@@ -24,15 +24,10 @@ Route::get('/', function () {
 
 Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
 
-    //propriedades
-    Route::get('/propriedades', [BuildingController::class, 'index'])->name('properties.index');
-    Route::get('/propriedades/cadastrar', [BuildingController::class, 'create'])->name('properties.create');
-    Route::get('/propriedades/{id}/editar', [BuildingController::class, 'edit'])->name('properties.edit');
-
     //inqulinos
     Route::get('/inquilinos', [PeopleController::class, 'index'])->name('people.index');
     Route::get('/inquilinos/cadastrar', [PeopleController::class, 'create'])->name('people.create');
-    Route::get('/inquilinos/{id}/editar', [PeopleController::class, 'edit'])->name('people.edit');
+    Route::get('/inquilinos/{people}/editar', [PeopleController::class, 'edit'])->name('people.edit');
 
 
     //notificações

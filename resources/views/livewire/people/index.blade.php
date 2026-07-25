@@ -19,10 +19,10 @@
                     @forelse($people as $p)
                     <tr>
                         <td>
-                            <a href="{{route('admin.people.edit', $p->id)}}">#{{$p->id}}</a>
+                            <a href="{{route('admin.people.edit', $p->uuid)}}">#{{$p->id}}</a>
                         </td>
                         <td>
-                            <a href="{{route('admin.people.edit', $p->id)}}">{{$p->name}}</a>
+                            <a href="{{route('admin.people.edit', $p->uuid)}}">{{$p->name}}</a>
                         </td>
                         <td>
                             @if($p->activeContract?->property)
@@ -39,7 +39,7 @@
                         <td>
 
                             <a class="btn rounded-pill btn-outline-secondary waves-effect btn-sm"
-                                href="javascript:void(0);">
+                                href="{{route('admin.people.edit', $p->uuid)}}">
                                 <i class="icon-base ti tabler-pencil"></i>
                             </a>
 

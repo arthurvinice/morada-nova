@@ -13,7 +13,7 @@
 @section('content')
     @include('_inc.alerts')
 
-    @livewire('people.edit', ['people' => $peopleId])
+    @livewire('people.edit', ['people' => $people])
 @endsection
 
 @push('scripts')

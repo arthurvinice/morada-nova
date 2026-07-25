@@ -12,7 +12,7 @@ class Index extends Component
     public function render()
     {
         if (auth()->user()->role == 'SuperAdmin') {
-            $people = People::all();
+            $people = People::with('contracts.property', 'activeContract.property')->get();
         } else {
             $people = People::where('user_id', auth()->user()->id)
                 ->with('contracts.property', 'activeContract.property')

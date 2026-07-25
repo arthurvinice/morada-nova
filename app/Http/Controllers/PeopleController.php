@@ -17,10 +17,8 @@ class PeopleController extends Controller
         return view('people.create');
     }
 
-    public function edit($id)
+    public function edit(People $people)
     {
-        $peopleId = People::findOrFail($id);
-        return view('people.edit', compact('peopleId'));
+        return view('people.edit', compact('people'));
     }
 }
-
