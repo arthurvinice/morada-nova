@@ -21,61 +21,61 @@
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="name" class="form-label">Nome</label>
-                        <input type="text" id="name" class="form-control @error('form.name') is-invalid @enderror"
-                            wire:model="form.name" autofocus>
-                        @error('form.name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <input type="text" id="name" class="form-control @error('name') is-invalid @enderror"
+                            wire:model="name" autofocus>
+                        @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
-                    <div class="mb-3 col-md-6" x-data="{ cpf: @entangle('form.cpf') }">
+                    <div class="mb-3 col-md-6" x-data="{ cpf: @entangle('cpf') }">
                         <label for="cpf" class="form-label">CPF</label>
-                        <input type="text" id="cpf" class="form-control @error('form.cpf') is-invalid @enderror"
+                        <input type="text" id="cpf" class="form-control @error('cpf') is-invalid @enderror"
                             x-model="cpf" x-mask="000.000.000-00">
-                        @error('form.cpf') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        @error('cpf') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="email" class="form-label">E-mail</label>
-                        <input type="text" id="email" class="form-control @error('form.email') is-invalid @enderror"
-                            wire:model="form.email">
-                        @error('form.email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <input type="text" id="email" class="form-control @error('email') is-invalid @enderror"
+                            wire:model="email">
+                        @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
-                    <div class="mb-3 col-md-6" x-data="{ phone: @entangle('form.phone') }">
+                    <div class="mb-3 col-md-6" x-data="{ phone: @entangle('phone') }">
                         <label for="phone" class="form-label">Telefone</label>
-                        <input type="text" id="phone" class="form-control @error('form.phone') is-invalid @enderror"
+                        <input type="text" id="phone" class="form-control @error('phone') is-invalid @enderror"
                             x-model="phone" x-mask="(00) 00000-0000">
-                        @error('form.phone') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        @error('phone') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="role" class="form-label">Nível</label>
-                        <select id="role" class="form-select @error('form.role') is-invalid @enderror" wire:model="form.role">
+                        <select id="role" class="form-select @error('role') is-invalid @enderror" wire:model="role">
                             <option value="standard">Padrão</option>
                             <option value="admin">Administrador</option>
                         </select>
-                        @error('form.role') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        @error('role') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
                     <div class="mb-3 col-md-6">
                         <label for="status" class="form-label">Status</label>
-                        <select id="status" class="form-select @error('form.status') is-invalid @enderror" wire:model="form.status">
+                        <select id="status" class="form-select @error('status') is-invalid @enderror" wire:model="status">
                             <option value="active">Ativo</option>
                             <option value="inactive">Inativo</option>
                         </select>
-                        @error('form.status') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        @error('status') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="password" class="form-label">Nova senha (opcional)</label>
-                        <input type="password" id="password" class="form-control @error('form.password') is-invalid @enderror"
-                            wire:model="form.password" placeholder="Deixe em branco para manter a atual">
-                        @error('form.password') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror"
+                            wire:model="password" placeholder="Deixe em branco para manter a atual">
+                        @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </div>
 
