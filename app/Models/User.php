@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\BelongsToConfiguration;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,36 +10,26 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, BelongsToConfiguration;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
+        'uuid',
         'name',
+        'cpf',
         'email',
+        'phone',
+        'image',
         'password',
         'role',
-        'status'
+        'status',
+        'configuration_id',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
@@ -47,20 +38,33 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    public function buildings(){
-        return $this->hasMany(Building::class);
-    }
-
-    public function properties(){
+    public function properties()
+    {
         return $this->hasMany(Property::class);
     }
 
-    public function people(){
+    public function people()
+    {
         return $this->hasMany(People::class);
     }
 
-    public function contracts(){
+    public function contracts()
+    {
         return $this->hasMany(Contract::class);
     }
 
+    public function configuration()
+    {
+        return $this->belongsTo(Configuration::class);
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === 'superadmin';
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
 }

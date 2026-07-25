@@ -25,6 +25,9 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->unsignedBigInteger('configuration_id')->nullable();
+            $table->foreign('configuration_id')->references('id')->on('configurations')->nullOnDelete();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

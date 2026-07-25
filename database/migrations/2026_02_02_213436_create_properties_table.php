@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('state');
             $table->string('zip_code');
             $table->string('complement')->nullable();
-            $table->text('description')->nullable(); 
+            $table->text('description')->nullable();
             $table->decimal('rent_value', 10, 2)->nullable();
             $table->string('status')->default('available');
 
@@ -30,6 +30,9 @@ return new class extends Migration
 
             $table->unsignedBigInteger('property_type_id');
             $table->foreign('property_type_id')->references('id')->on('property_types')->restrictOnDelete();
+
+            $table->unsignedBigInteger('configuration_id')->after('id');
+            $table->foreign('configuration_id')->references('id')->on('configurations')->cascadeOnDelete();
 
             $table->timestamps();
         });

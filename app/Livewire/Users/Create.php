@@ -3,6 +3,7 @@
 namespace App\Livewire\Users;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Rule;
@@ -31,12 +32,18 @@ class Create extends Component
     #[Rule('required|string|min:8')]
     public string $password = '';
 
+    public function mount()
+    {
+        abort_unless(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin(), 403);
+    }
+
     public function save()
     {
         $this->validate();
 
         User::create([
             'uuid' => (string) Str::uuid(),
+            'configuration_id' => Auth::user()->configuration_id,
             'name' => $this->name,
             'cpf' => $this->cpf,
             'email' => $this->email,

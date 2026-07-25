@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\BelongsToConfiguration;
 use App\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 
 class Contract extends Model
 {
-    use HasUuid;
+    use HasUuid, BelongsToConfiguration;
 
     protected $table = 'contracts';
 
@@ -21,6 +22,7 @@ class Contract extends Model
         'property_id',
         'people_id',
         'user_id',
+        'configuration_id',
     ];
 
     protected $casts = [
@@ -42,5 +44,10 @@ class Contract extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function configuration()
+    {
+        return $this->belongsTo(Configuration::class);
     }
 }

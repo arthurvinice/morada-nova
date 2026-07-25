@@ -11,7 +11,7 @@ class PropertySeeder extends Seeder
 {
     public function run(): void
     {
-        $userId = DB::table('users')->where('email', 'admin@teste.com')->value('id');
+        $admin = DB::table('users')->where('email', 'admin@teste.com')->first();
         $typeIds = PropertyType::pluck('id', 'name');
 
         $properties = [
@@ -39,7 +39,8 @@ class PropertySeeder extends Seeder
                 'zip_code' => $property['zip_code'],
                 'rent_value' => $property['rent_value'],
                 'status' => 'available',
-                'user_id' => $userId,
+                'user_id' => $admin->id,
+                'configuration_id' => $admin->configuration_id,
                 'property_type_id' => $typeIds[$property['type']],
             ]);
         }

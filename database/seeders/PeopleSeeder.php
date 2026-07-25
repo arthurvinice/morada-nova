@@ -10,7 +10,7 @@ class PeopleSeeder extends Seeder
 {
     public function run(): void
     {
-        $userId = DB::table('users')->where('email', 'admin@teste.com')->value('id');
+        $admin = DB::table('users')->where('email', 'admin@teste.com')->first();
 
         $people = [
             ['name' => 'Maria Oliveira Souza', 'cpf' => '111.222.333-44', 'phone' => '(84) 99111-2233', 'email' => 'maria.souza@email.com'],
@@ -33,7 +33,8 @@ class PeopleSeeder extends Seeder
         foreach ($people as $person) {
             People::create([
                 ...$person,
-                'user_id' => $userId,
+                'user_id' => $admin->id,
+                'configuration_id' => $admin->configuration_id,
             ]);
         }
     }
