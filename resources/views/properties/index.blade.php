@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('title')
-    Criar Inquilino
+    Propriedades
 @endsection
 
 @push('styles')
@@ -12,8 +12,9 @@
 @endpush
 
 @section('content')
-    @include('_inc.alerts') 
-    @livewire('people.create')
+    @include('_inc.alerts')
+
+    @livewire('property.index')
 @endsection
 
 @push('scripts')
@@ -24,4 +25,6 @@
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
     <script src="{{ asset('assets/js/form-layouts.js') }}"></script>
 
+
+    {{-- <script src="{{ asset('assets/js/ui-modals.js') }}"></script> --}}
 @endpush

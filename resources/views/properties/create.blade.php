@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('title')
-    Criar Inquilino
+    Criar Propriedade
 @endsection
 
 @push('styles')
@@ -13,7 +13,7 @@
 
 @section('content')
     @include('_inc.alerts') 
-    @livewire('people.create')
+    @livewire('property.create')
 @endsection
 
 @push('scripts')

@@ -1,15 +1,12 @@
 <?php
 
-use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\ChangelogController;
-use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HelpCenterController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\TermsController;
-use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +26,10 @@ Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
     Route::get('/inquilinos/cadastrar', [PeopleController::class, 'create'])->name('people.create');
     Route::get('/inquilinos/{people}/editar', [PeopleController::class, 'edit'])->name('people.edit');
 
+    //propriedades
+    Route::get('/propriedades', [PropertyController::class, 'index'])->name('properties.index');
+    Route::get('/propriedades/cadastrar', [PropertyController::class, 'create'])->name('properties.create');
+    Route::get('/propriedades/{property}/editar', [PropertyController::class, 'edit'])->name('properties.edit');
 
     //notificações
     Route::get('/notificacoes', [NotificationController::class, 'index'])->name('notification.index');
