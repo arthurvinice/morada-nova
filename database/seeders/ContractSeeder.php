@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ContractSeeder extends Seeder
 {
@@ -11,24 +12,40 @@ class ContractSeeder extends Seeder
     {
         $admin = DB::table('users')->where('role', 'admin')->first();
 
-        $rentedProperties = DB::table('properties')->where('status', 'rented')->get();
-        $people           = DB::table('people')->pluck('id')->toArray();
+        $properties = DB::table('properties')
+            ->where('configuration_id', $admin->configuration_id)
+            ->orderBy('id')
+            ->get();
+
+        $people = DB::table('people')
+            ->where('configuration_id', $admin->configuration_id)
+            ->orderBy('id')
+            ->get();
+
+        $totalContracts = min($properties->count(), $people->count());
 
         $contracts = [];
 
-        foreach ($rentedProperties as $index => $property) {
+        for ($i = 0; $i < $totalContracts; $i++) {
+            $property = $properties[$i];
+            $person = $people[$i];
+
             $contracts[] = [
-                'start_date'        => now()->subMonths(3)->toDateString(),
-                'end_date'          => now()->addMonths(9)->toDateString(),
-                'rent_value'        => $property->rent_value,
-                'status'            => 'active',
-                'property_id'       => $property->id,
-                'people_id'         => $people[$index % count($people)],
-                'user_id'           => $admin->id,
-                'configuration_id'  => $admin->configuration_id,
-                'created_at'        => now(),
-                'updated_at'        => now(),
+                'uuid'             => (string) Str::uuid(),
+                'start_date'       => now()->subMonths(rand(1, 10))->toDateString(),
+                'end_date'         => null,
+                'payday'           => rand(1, 28),
+                'rent_value'       => $property->rent_value,
+                'status'           => 'active',
+                'property_id'      => $property->id,
+                'people_id'        => $person->id,
+                'user_id'          => $admin->id,
+                'configuration_id' => $admin->configuration_id,
+                'created_at'       => now(),
+                'updated_at'       => now(),
             ];
+
+            DB::table('properties')->where('id', $property->id)->update(['status' => 'rented']);
         }
 
         DB::table('contracts')->insert($contracts);

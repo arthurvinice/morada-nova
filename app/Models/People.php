@@ -39,4 +39,9 @@ class People extends Model
     {
         return $this->belongsTo(Configuration::class);
     }
+
+    public function activeContract()
+    {
+        return $this->hasOne(Contract::class)->where('status', 'active');
+    }
 }

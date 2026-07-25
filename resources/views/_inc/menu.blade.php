@@ -44,6 +44,28 @@
         </ul>
     </li>
 
+    <li class="menu-item {{ request()->routeIs('admin.contracts.*') ? 'active open' : '' }}">
+        <a href="#" class="menu-link menu-toggle">
+            <i class="icon-base ti tabler-contract icon-md me-2"></i>
+            <div data-i18n="Contratos">Contratos</div>
+        </a>
+
+        <ul class="menu-sub">
+            <li class="menu-item {{ request()->routeIs('admin.contracts.index') ? 'active open' : '' }}">
+                <a href="{{ route('admin.contracts.index') }}" class="menu-link">
+                    <i class="menu-icon icon-base ti tabler-list"></i>
+                    <div data-i18n="Listar">Listar</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->routeIs('admin.contracts.create') ? 'active open' : '' }}">
+                <a href="{{ route('admin.contracts.create') }}" class="menu-link">
+                    <i class="menu-icon icon-base ti tabler-plus"></i>
+                    <div data-i18n="Adicionar">Adicionar</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
     <li class="menu-item {{ request()->routeIs('admin.user.*') ? 'active open' : '' }}">
         <a href="#" class="menu-link menu-toggle">
             <i class="icon-base ti tabler-users icon-md me-2"></i>
