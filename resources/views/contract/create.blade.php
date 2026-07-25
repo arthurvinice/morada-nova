@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('title')
-    Inquilinos
+    Criar Contrato
 @endsection
 
 @push('styles')
@@ -14,7 +14,7 @@
 @section('content')
     @include('_inc.alerts')
 
-    @livewire('people.index')
+    @livewire('contract.create')
 @endsection
 
 @push('scripts')

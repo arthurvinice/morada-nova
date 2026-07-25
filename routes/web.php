@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChangelogController;
+use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HelpCenterController;
 use App\Http\Controllers\NotificationController;
@@ -31,6 +32,11 @@ Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
     Route::get('/propriedades/cadastrar', [PropertyController::class, 'create'])->name('properties.create');
     Route::get('/propriedades/{property}/editar', [PropertyController::class, 'edit'])->name('properties.edit');
 
+    //contratos
+    Route::get('/contratos', [ContractController::class, 'index'])->name('contracts.index');
+    Route::get('/contratos/cadastrar', [ContractController::class, 'create'])->name('contracts.create');
+    Route::get('/contratos/{contract}/editar', [ContractController::class, 'edit'])->name('contracts.edit');
+
     //notificações
     Route::get('/notificacoes', [NotificationController::class, 'index'])->name('notification.index');
     Route::get('/notificacoes/criar', [NotificationController::class, 'create'])->middleware('can:super-admin-access')->name('notification.create');
@@ -47,7 +53,6 @@ Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
 
     //rota termos
     Route::get('/suporte/termos', [TermsController::class, 'show'])->name('terms.show');
-
 
     // Perfil do usuário
     Route::get('usuarios/', [UserController::class, 'index'])->middleware('can:super-admin-access')->name('user.index');
