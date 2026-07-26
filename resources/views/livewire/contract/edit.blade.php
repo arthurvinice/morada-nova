@@ -21,44 +21,33 @@
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="property_id" class="form-label">Imóvel</label>
-                        <select id="property_id" class="form-select @error('property_id') is-invalid @enderror"
-                            wire:model="property_id">
-                            <option value="">Selecione...</option>
+                        <select id="property_id" wire:ignore
+                            class="form-select select2 @error('property_id') is-invalid @enderror"
+                            data-placeholder="Selecione o imóvel...">
+                            <option></option>
                             @foreach ($properties as $property)
-                            <option value="{{ $property->id }}">{{ $property->nickname ?: $property->street . ', ' . $property->number }}</option>
+                                <option value="{{ $property->id }}" @selected($property_id == $property->id)>
+                                    {{ $property->nickname ?: $property->street . ', ' . $property->number }}
+                                </option>
                             @endforeach
                         </select>
-                        @error('property_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        @error('property_id') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
                     </div>
 
                     <div class="mb-3 col-md-6">
                         <label for="people_id" class="form-label">Inquilino</label>
-                        <select id="people_id" class="form-select @error('people_id') is-invalid @enderror"
-                            wire:model="people_id">
-                            <option value="">Selecione...</option>
+                        <select id="people_id" wire:ignore
+                            class="form-select select2 @error('people_id') is-invalid @enderror"
+                            data-placeholder="Selecione o inquilino...">
+                            <option></option>
                             @foreach ($people as $person)
-                            <option value="{{ $person->id }}">{{ $person->name }}</option>
+                                <option value="{{ $person->id }}" @selected($people_id == $person->id)>
+                                    {{ $person->name }}
+                                </option>
                             @endforeach
                         </select>
-                        @error('people_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        @error('people_id') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
                     </div>
-                </div>
-
-                <div class="mb-3 col-md-6">
-                    <label for="file" class="form-label">Arquivo do contrato</label>
-                    <input type="file" id="file" class="form-control @error('file') is-invalid @enderror"
-                        wire:model="file">
-                    @error('file') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                    <div wire:loading wire:target="file" class="form-text">Enviando arquivo...</div>
-
-                    @if ($contract->file && !$file)
-                    <div class="form-text">
-                        <i class="icon-base ti tabler-paperclip me-1"></i>
-                        <a href="{{ Storage::disk('public')->url($contract->file) }}" target="_blank">
-                            Ver arquivo atual
-                        </a>
-                    </div>
-                    @endif
                 </div>
 
                 <div class="row">
@@ -103,6 +92,23 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="file" class="form-label">Arquivo do contrato</label>
+                        <input type="file" id="file" class="form-control @error('file') is-invalid @enderror"
+                            wire:model="file">
+                        @error('file') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <div wire:loading wire:target="file" class="form-text">Enviando arquivo...</div>
+
+                        @if ($contract->file && !$file)
+                            <div class="form-text">
+                                <i class="icon-base ti tabler-paperclip me-1"></i>
+                                <a href="{{ asset('storage/' . $contract->file) }}" target="_blank">Ver arquivo atual</a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
                 <div class="d-flex justify-content-end mt-2">
                     <button type="submit" class="btn btn-primary me-2" wire:loading.attr="disabled" wire:target="update">
                         <span wire:loading wire:target="update" class="spinner-border spinner-border-sm me-1"></span>
@@ -113,4 +119,25 @@
             </form>
         </div>
     </div>
+
+    @script
+    <script>
+        $(() => {
+            const initSelect2 = (selector, field) => {
+                const $select = $(wire.$el).find(selector);
+
+                $select.select2({
+                    width: '100%',
+                    dropdownParent: $select.closest('.mb-3'),
+                    allowClear: true,
+                }).on('change', (e) => {
+                    $wire.set(field, e.target.value);
+                });
+            };
+
+            initSelect2('#property_id', 'property_id');
+            initSelect2('#people_id', 'people_id');
+        });
+    </script>
+    @endscript
 </div>

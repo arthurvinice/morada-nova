@@ -42,6 +42,12 @@
                         title="Resetar filtros">
                         <i class="tf-icons ti tabler-refresh" wire:loading.class="tabler-spin" wire:target="limparFiltros"></i>
                     </button>
+
+                    <a href="{{ route('admin.properties.create') }}"
+                        class="btn btn-primary btn-lg flex-shrink-0 d-flex align-items-center justify-content-center p-2"
+                        role="button">
+                        <i class="tf-icons ti tabler-plus"></i>
+                    </a>
                 </div>
             </div>
         </div>
