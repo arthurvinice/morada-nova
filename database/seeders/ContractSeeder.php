@@ -14,15 +14,16 @@ class ContractSeeder extends Seeder
 
         $properties = DB::table('properties')
             ->where('configuration_id', $admin->configuration_id)
-            ->orderBy('id')
-            ->get();
+            ->get()
+            ->shuffle();
 
         $people = DB::table('people')
             ->where('configuration_id', $admin->configuration_id)
-            ->orderBy('id')
-            ->get();
+            ->get()
+            ->shuffle();
 
-        $totalContracts = min($properties->count(), $people->count());
+        // deixa uma parte das pessoas sem contrato ativo, para simular prospects
+        $totalContracts = min($properties->count(), $people->count() - 3);
 
         $contracts = [];
 
