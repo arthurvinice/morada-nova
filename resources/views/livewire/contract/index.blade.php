@@ -9,7 +9,9 @@
             </ol>
         </nav>
 
-        <a href="{{ route('admin.contracts.create') }}" class="btn btn-primary px-2 waves-effect waves-light" role="button">
+        <a href="{{ route('admin.contracts.create') }}"
+            class="btn btn-primary px-2 waves-effect waves-light"
+            role="button">
             <i class="menu-icon icon-base ti tabler-library-plus"></i>
             Novo Contrato
         </a>
@@ -18,12 +20,33 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5>Contratos</h5>
-            <select class="form-select" style="width: 180px;" wire:model.live="filtroStatus">
-                <option value="">Status</option>
-                <option value="active">Ativo</option>
-                <option value="finished">Encerrado</option>
-                <option value="cancelled">Cancelado</option>
-            </select>
+            <div class="text-muted fs-6">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="position-relative" style="width: 320px;">
+                        <input type="text" class="form-control" placeholder="Buscar por nome ou CPF do inquilino..."
+                            wire:model.live.debounce.500ms="busca" style="padding-right: 2.5rem;">
+                        @if ($busca)
+                            <span class="position-absolute top-50 translate-middle-y"
+                                style="right: 10px; cursor: pointer; z-index: 10;" wire:click="$set('busca', '')">
+                                <i class="ti ti-x"></i>
+                            </span>
+                        @endif
+                    </div>
+
+                    <select class="form-select" wire:model.live="filtroStatus" style="width: 160px;">
+                        <option value="">Status</option>
+                        <option value="active">Ativo</option>
+                        <option value="finished">Encerrado</option>
+                        <option value="cancelled">Cancelado</option>
+                    </select>
+
+                    <button wire:click="limparFiltros"
+                        class="btn btn-outline-secondary btn-lg flex-shrink-0 d-flex align-items-center justify-content-center p-2"
+                        title="Resetar filtros">
+                        <i class="tf-icons ti tabler-refresh" wire:loading.class="tabler-spin" wire:target="limparFiltros"></i>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <div class="table-responsive text-nowrap">
@@ -72,6 +95,14 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+
+        <div class="row">
+            <div class="col-12 pt-5">
+                <div class="float-end px-5">
+                    {{ $contracts->links() }}
+                </div>
+            </div>
         </div>
     </div>
 </div>

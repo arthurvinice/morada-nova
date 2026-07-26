@@ -22,7 +22,6 @@ class ContractSeeder extends Seeder
             ->get()
             ->shuffle();
 
-        // deixa uma parte das pessoas sem contrato ativo, para simular prospects
         $totalContracts = min($properties->count(), $people->count() - 3);
 
         $contracts = [];
@@ -38,6 +37,7 @@ class ContractSeeder extends Seeder
                 'payday'           => rand(1, 28),
                 'rent_value'       => $property->rent_value,
                 'status'           => 'active',
+                'file'             => null,
                 'property_id'      => $property->id,
                 'people_id'        => $person->id,
                 'user_id'          => $admin->id,

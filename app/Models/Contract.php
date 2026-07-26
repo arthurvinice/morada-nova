@@ -19,6 +19,7 @@ class Contract extends Model
         'payday',
         'rent_value',
         'status',
+        'file',
         'property_id',
         'people_id',
         'user_id',

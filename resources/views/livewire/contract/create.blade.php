@@ -86,6 +86,16 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="file" class="form-label">Arquivo do contrato</label>
+                        <input type="file" id="file" class="form-control @error('file') is-invalid @enderror"
+                            wire:model="file">
+                        @error('file') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <div wire:loading wire:target="file" class="form-text">Enviando arquivo...</div>
+                    </div>
+                </div>
+
                 <div class="mt-2">
                     <button type="submit" class="btn btn-primary me-2" wire:loading.attr="disabled" wire:target="store">
                         <span wire:loading wire:target="store" class="spinner-border spinner-border-sm me-1"></span>

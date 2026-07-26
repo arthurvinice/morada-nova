@@ -6,7 +6,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Gestão House: Erro!</title>
+    <title>Morada Nova: Erro!</title>
 
     <meta name="description"
         content="Vuexy is the best bootstrap 5 dashboard for responsive web apps. Streamline your app development process with ease.">
@@ -45,7 +45,7 @@
 
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/morada-nova-logo.ico') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -310,10 +310,10 @@
         :root,
         [data-bs-theme=light],
         [data-bs-theme=dark] {
-            --bs-primary: #8F323F;
-            --bs-primary-rgb: 143, 50, 63;
-            --bs-primary-bg-subtle: color-mix(in sRGB, var(--bs-paper-bg) 84%, #8F323F);
-            --bs-primary-border-subtle: rgba(143, 50, 63, 0.39);
+            --bs-primary: #004387;
+            --bs-primary-rgb: 0, 67, 135;
+            --bs-primary-bg-subtle: color-mix(in sRGB, var(--bs-paper-bg) 84%, #004387);
+            --bs-primary-border-subtle: rgba(0, 67, 135, 0.39);
             --bs-primary-contrast: #fff
         }
     </style>
@@ -485,7 +485,7 @@
 
                                     <button type="button" class="pcr-button ti tabler-color-picker" role="button"
                                         aria-label="toggle color picker dialog"
-                                        style="transition: none; --pcr-color: rgba(143, 50, 63, 1);"></button>
+                                        style="transition: none; --pcr-color: rgba(0, 67, 135, 1);"></button>
 
 
                                 </div>
@@ -1047,13 +1047,13 @@
         <div class="pcr-selection">
             <div class="pcr-color-preview">
                 <button type="button" class="pcr-last-color" aria-label="use previous color"
-                    style="transition: none; --pcr-color: rgba(143, 50, 63, 1);"></button>
-                <div class="pcr-current-color" style="--pcr-color: rgba(143, 50, 63, 1);"></div>
+                    style="transition: none; --pcr-color: rgba(0, 67, 135, 1);"></button>
+                <div class="pcr-current-color" style="--pcr-color: rgba(0, 67, 135, 1);"></div>
             </div>
 
             <div class="pcr-color-palette">
                 <div class="pcr-picker"
-                    style="left: calc(65.035% - 9px); top: calc(43.9216% - 9px); background: rgb(143, 50, 63);"></div>
+                    style="left: calc(65.035% - 9px); top: calc(43.9216% - 9px); background: rgb(0, 67, 135);"></div>
                 <div class="pcr-palette" tabindex="0" aria-label="color selection area" role="listbox"
                     style="background: linear-gradient(to top, rgb(0, 0, 0), transparent), linear-gradient(to left, rgb(255, 0, 36), rgb(255, 255, 255));">
                 </div>

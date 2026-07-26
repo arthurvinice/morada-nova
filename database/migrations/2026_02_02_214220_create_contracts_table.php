@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('payday')->default(1);
             $table->decimal('rent_value', 10, 2);
             $table->string('status')->default('active');
+            $table->string('file')->nullable();
 
             $table->unsignedBigInteger('property_id');
             $table->foreign('property_id')->references('id')->on('properties')->restrictOnDelete();

@@ -109,7 +109,7 @@
                               <td>R$ {{ number_format($contract->rent_value, 2, ',', '.') }}</td>
                               <td>
                                    <a class="btn rounded-pill btn-outline-secondary waves-effect btn-sm"
-                                        href="{{ route('admin.contracts.edit', $contract->id) }}">
+                                        href="{{ route('admin.contracts.edit', $contract) }}">
                                         <i class="icon-base ti tabler-eye"></i>
                                    </a>
                               </td>

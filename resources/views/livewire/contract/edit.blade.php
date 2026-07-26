@@ -25,7 +25,7 @@
                             wire:model="property_id">
                             <option value="">Selecione...</option>
                             @foreach ($properties as $property)
-                                <option value="{{ $property->id }}">{{ $property->nickname ?: $property->street . ', ' . $property->number }}</option>
+                            <option value="{{ $property->id }}">{{ $property->nickname ?: $property->street . ', ' . $property->number }}</option>
                             @endforeach
                         </select>
                         @error('property_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -37,11 +37,28 @@
                             wire:model="people_id">
                             <option value="">Selecione...</option>
                             @foreach ($people as $person)
-                                <option value="{{ $person->id }}">{{ $person->name }}</option>
+                            <option value="{{ $person->id }}">{{ $person->name }}</option>
                             @endforeach
                         </select>
                         @error('people_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                    <label for="file" class="form-label">Arquivo do contrato</label>
+                    <input type="file" id="file" class="form-control @error('file') is-invalid @enderror"
+                        wire:model="file">
+                    @error('file') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    <div wire:loading wire:target="file" class="form-text">Enviando arquivo...</div>
+
+                    @if ($contract->file && !$file)
+                    <div class="form-text">
+                        <i class="icon-base ti tabler-paperclip me-1"></i>
+                        <a href="{{ Storage::disk('public')->url($contract->file) }}" target="_blank">
+                            Ver arquivo atual
+                        </a>
+                    </div>
+                    @endif
                 </div>
 
                 <div class="row">
@@ -86,7 +103,7 @@
                     </div>
                 </div>
 
-                <div class="mt-2">
+                <div class="d-flex justify-content-end mt-2">
                     <button type="submit" class="btn btn-primary me-2" wire:loading.attr="disabled" wire:target="update">
                         <span wire:loading wire:target="update" class="spinner-border spinner-border-sm me-1"></span>
                         Atualizar
