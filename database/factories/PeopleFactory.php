@@ -2,27 +2,27 @@
 
 namespace Database\Factories;
 
+use App\Models\Configuration;
+use App\Models\User;
+use App\Models\People;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\People>
- */
 class PeopleFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = People::class;
+
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'cpf' => fake()->cpf(),
-            'phone' => fake()->phoneNumber(),
-            'email' => fake()->email(),
-            'document' => fake()->randomNumber(),
-            'user_id' => 2
+            'uuid' => Str::uuid(),
+            'name' => $this->faker->name(),
+            'cpf' => $this->faker->unique()->numerify('###.###.###-##'),
+            'phone' => $this->faker->numerify('(##) 9####-####'),
+            'email' => $this->faker->optional()->safeEmail(),
+            'document' => null,
+            'user_id' => User::factory(),
+            'configuration_id' => Configuration::factory(),
         ];
     }
 }

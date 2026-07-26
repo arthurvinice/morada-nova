@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Models\Configuration;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -29,34 +30,40 @@ trait BelongsToConfiguration
     }
 
     /**
-     * Resolve a configuration_id do usuário autenticado sem recursão,
-     * evitando reaplicar o Global Scope sobre o próprio model User
-     * durante a resolução da autenticação.
+     * Resolve a configuration_id do usuário autenticado.
+     *
+     * Usa um "reentrancy guard" (não um cache de valor) para evitar
+     * recursão infinita quando o próprio processo de autenticação
+     * (Auth::check()/Auth::id()) precisa resolver o model User, o que
+     * reaciona este mesmo Global Scope. Nenhum resultado é memorizado
+     * entre chamadas, então o valor é sempre recalculado com base no
+     * usuário atualmente autenticado.
      */
     protected static function currentConfigurationId(): ?int
     {
-        static $resolved = false;
-        static $cached = null;
+        static $resolving = false;
 
-        if ($resolved) {
-            return $cached;
+        if ($resolving) {
+            return null;
         }
 
-        $resolved = true;
+        $resolving = true;
 
-        if (! Auth::check()) {
-            return $cached;
+        try {
+            if (! Auth::check()) {
+                return null;
+            }
+
+            $user = User::withoutGlobalScope('configuration')->find(Auth::id());
+
+            if (! $user || $user->isSuperAdmin()) {
+                return null;
+            }
+
+            return $user->configuration_id;
+        } finally {
+            $resolving = false;
         }
-
-        $user = User::withoutGlobalScope('configuration')->find(Auth::id());
-
-        if (! $user || $user->isSuperAdmin()) {
-            $cached = null;
-        } else {
-            $cached = $user->configuration_id;
-        }
-
-        return $cached;
     }
 
     public function configuration()

@@ -2,49 +2,40 @@
 
 namespace Database\Factories;
 
+use App\Models\Configuration;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
 class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
+    protected $model = User::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
-        $cargos = ['Padrão', 'Recepção', 'Marketing', 'Assessor interno', 'Assessor externo', 'Supervisor', 'Administrador', 'SuperAdmin'];
-
         return [
-            'name' => fake()->name(),
-            'status' => 'active',
-            'cpf' => fake()->cpf(),
-            'role' => Arr::random($cargos),
-            'email' => fake()->unique()->safeEmail(),
+            'uuid' => Str::uuid(),
+            'name' => $this->faker->name(),
+            'cpf' => $this->faker->unique()->numerify('###.###.###-##'),
+            'email' => $this->faker->unique()->safeEmail(),
+            'phone' => $this->faker->numerify('(##) 9####-####'),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
+            'role' => 'standard',
+            'status' => 'active',
+            'configuration_id' => Configuration::factory(),
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
+    public function admin(): static
     {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
+        return $this->state(fn () => ['role' => 'admin']);
+    }
+
+    public function superadmin(): static
+    {
+        return $this->state(fn () => ['role' => 'superadmin', 'configuration_id' => null]);
     }
 }
