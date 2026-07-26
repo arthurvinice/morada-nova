@@ -138,6 +138,7 @@
                                     <option value="available">Disponível</option>
                                     <option value="rented">Alugado</option>
                                     <option value="maintenance">Manutenção</option>
+                                    <option value="deactivated">Desativado</option>
                                 </select>
                                 @error('status')
                                 <div class="alert alert-warning small mt-1">{{ $message }}</div>

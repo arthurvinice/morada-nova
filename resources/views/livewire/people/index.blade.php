@@ -77,7 +77,7 @@
                             </td>
                             <td>
                                 <a class="btn rounded-pill btn-outline-secondary waves-effect btn-sm"
-                                    href="{{ route('admin.people.edit', $person->id) }}">
+                                    href="{{ route('admin.people.edit', $person) }}">
                                     <i class="icon-base ti tabler-pencil">Editar</i>
                                 </a>
                             </td>

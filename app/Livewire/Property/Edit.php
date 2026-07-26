@@ -34,7 +34,7 @@ class Edit extends Component
         'state'             => 'required|string|max:2',
         'description'       => 'nullable|string',
         'rent_value'        => 'nullable|numeric|min:0',
-        'status'            => 'required|string|in:available,rented,maintenance',
+        'status'            => 'required|string|in:available,rented,maintenance,deactivated',
         'property_type_id'  => 'required|exists:property_types,id',
     ];
 
