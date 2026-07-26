@@ -34,8 +34,9 @@
                         <option value="available">Disponível</option>
                         <option value="rented">Alugado</option>
                         <option value="maintenance">Manutenção</option>
+                        <option value="deactivated">Desativado</option>
                     </select>
-
+                    
                     <button wire:click="limparFiltros"
                         class="btn btn-outline-secondary btn-lg flex-shrink-0 d-flex align-items-center justify-content-center p-2"
                         title="Resetar filtros">
@@ -84,20 +85,20 @@
                         </td>
                         <td>
                             @switch($p->status)
-                                @case('available')
-                                    <span class="badge bg-label-success">Disponível</span>
-                                @break
-                                @case('rented')
-                                    <span class="badge bg-label-info">Alugado</span>
-                                @break
-                                @case('maintenance')
-                                    <span class="badge bg-label-warning">Manutenção</span>
-                                @break
-                                @case('deactivated')
-                                    <span class="badge bg-label-secondary">Desativado</span>
-                                @break
-                                @default
-                                    <span class="badge bg-label-secondary">{{ $p->status }}</span>
+                            @case('available')
+                            <span class="badge bg-label-success">Disponível</span>
+                            @break
+                            @case('rented')
+                            <span class="badge bg-label-info">Alugado</span>
+                            @break
+                            @case('maintenance')
+                            <span class="badge bg-label-warning">Manutenção</span>
+                            @break
+                            @case('deactivated')
+                            <span class="badge bg-label-secondary">Desativado</span>
+                            @break
+                            @default
+                            <span class="badge bg-label-secondary">{{ $p->status }}</span>
                             @endswitch
                         </td>
                         <td>

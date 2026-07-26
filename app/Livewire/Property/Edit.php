@@ -11,6 +11,7 @@ use Livewire\Component;
 class Edit extends Component
 {
     public Property $property;
+    public $activeContract;
 
     public $zip_code;
     public $street;
@@ -51,13 +52,11 @@ class Edit extends Component
 
     public function mount(Property $property)
     {
-        abort_if(
-            auth()->user()->role !== 'SuperAdmin' && $property->user_id !== auth()->id(),
-            403,
-            'Você não tem permissão para editar esta propriedade.'
-        );
+        $property->load('activeContract.people');
 
         $this->property = $property;
+        $this->activeContract = $property->activeContract;
+
         $this->nickname = $property->nickname;
         $this->zip_code = $property->zip_code;
         $this->street = $property->street;
@@ -109,11 +108,9 @@ class Edit extends Component
 
     public function update()
     {
-        abort_if(
-            auth()->user()->role !== 'SuperAdmin' && $this->property->user_id !== auth()->id(),
-            403,
-            'Você não tem permissão para editar esta propriedade.'
-        );
+        if ($this->activeContract) {
+            $this->status = $this->property->status;
+        }
 
         $this->validate();
 
