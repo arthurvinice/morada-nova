@@ -1,50 +1,107 @@
-# Sistema de Gestão e Agendamentos
+# Morada Nova
 
-Gestão House foi criado para gerenciar cadastros e agendamentos para setor público e privado, conectado com o WhatsApp através da API da Z-API.
+Sistema SaaS para gestão de imóveis de aluguel, desenvolvido com Laravel.
+
+O objetivo da plataforma é centralizar o gerenciamento de imóveis, contratos, locatários, proprietários, pagamentos e demais processos relacionados à administração imobiliária.
+
+## Tecnologias
+
+- PHP 8.x
+- Laravel 12
+- MySQL/PostgreSQL
+- Bootstrap 5
+- Livewire
+- Alpine.js
 
 ## Instalação
 
-Use o link do Github (https://github.com/robertoferreira/gestao-camara-secretaria).
-Obs.: Add "." no final caso tenha criado tenha criado a pasta e tenha clonado, caso contrário não use o ponto, ele irá criar a pasta automaticamente.
+Clone o repositório:
 
 ```bash
-git clone git@github.com:robertoferreira/milena-cad.git
+git clone git@github.com:arthurvinice/morada-nova.git
+
+
+Acesse a pasta do projeto:
+
+```bash
+cd morada-nova
 ```
+
+Instale as dependências do PHP:
 
 ```bash
 composer install
 ```
 
-Cria o .env para adicionar as variaveis de ambiente
+Crie o arquivo de ambiente:
+
 ```bash
-cp .env.exemple .env
+cp .env.example .env
 ```
+
+Gere a chave da aplicação:
 
 ```bash
 php artisan key:generate
 ```
 
+Configure as informações do banco de dados no arquivo `.env`.
+
+Execute as migrations:
+
 ```bash
-php artisan migrate --seed
+php artisan migrate
 ```
 
-## Como usar
+Caso queira povoar o banco de dados:
+
+```bash
+php artisan db:seed
+```
+
+Inicie o servidor:
+
+```bash
+php artisan serve
+```
+
+A aplicação estará disponível em:
+
+```
+http://localhost:8000
+```
+
+## Estrutura do projeto
+
+- Gestão de imóveis
+- Gestão de proprietários
+- Gestão de inquilinos
+- Contratos de locação
+- Controle financeiro
+- Dashboard administrativo
+- Cadastro de usuários e permissões
+
+> Algumas funcionalidades ainda estão em desenvolvimento.
+
+## Variáveis de ambiente
+
+As principais configurações estão no arquivo `.env`:
 
 ```env
-No arquivo .env
+APP_NAME="Morada Nova"
+APP_ENV=local
+APP_DEBUG=true
 
-# adicionar as variáveis de ambientes caso não tenha:
-
-Z_API_INSTANCE=
-Z_API_TOKEN=
-Z_API_CLIENT_TOKEN=
-
-OPENCAGE_API_KEY=5fda91c1dbad4b26bf5a191622518e5d
-Obs.: Essa chave da Opencage é da House Criative, usar a do clinete
+DB_CONNECTION=
+DB_HOST=
+DB_PORT=
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
 ```
-
-
 
 ## Licença
 
-[Privada Pertencente a House Criative LTDA](https://housecriative.com.br)
+Este projeto é privado.
+
+Todos os direitos reservados.
