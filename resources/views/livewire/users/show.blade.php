@@ -26,14 +26,7 @@
                         <div class="mb-4">
                             <h5 class="card-header">Detalhes do seu perfil</h5>
 
-                            @if (session('success'))
-                                <div class="p-3">
-                                    <div class="alert alert-success d-flex align-items-center" role="alert">
-                                        <span class="alert-icon text-success me-2"><i class="ti ti-check ti-xs"></i></span>
-                                        {{ session('success') }}
-                                    </div>
-                                </div>
-                            @endif
+                            @include('_inc.alerts')
 
                             <hr class="my-3" />
 

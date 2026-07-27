@@ -11,6 +11,8 @@
         </nav>
     </div>
 
+    @include('_inc.alerts')
+
     <div class="card">
         <div class="card-header">
             <h5 class="mb-0">Novo Usuário</h5>

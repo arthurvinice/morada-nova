@@ -7,7 +7,6 @@
     </div>
 @endif
 
-
 @if (session('warning'))
     <div class="col-12 my-4">
         <div class="alert alert-warning alert-dismissible" role="alert">
@@ -17,12 +16,24 @@
     </div>
 @endif
 
+@if (session('error'))
+    <div class="col-12 my-4">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+@endif
+
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    <div class="col-12 my-4">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     </div>
 @endif
