@@ -37,7 +37,8 @@ class PropertyFactory extends Factory
             'rent_value' => $this->faker->randomFloat(2, 700, 3500),
             'status' => 'available',
             'user_id' => User::factory(),
-            'property_type_id' => PropertyType::factory(),
+            'property_type_id' => PropertyType::inRandomOrder()->first()?->id
+                ?? PropertyType::factory(),
             'configuration_id' => Configuration::factory(),
         ];
     }

@@ -26,7 +26,7 @@ class EditIsolationTest extends TestCase
 
         $this->actingAs($adminA);
 
-        $this->get(route('admin.properties.edit', $propertyB->id))
+        $this->get(route('admin.properties.edit', $propertyB->uuid))
             ->assertNotFound();
     }
 
@@ -42,7 +42,7 @@ class EditIsolationTest extends TestCase
 
         $this->actingAs($adminA);
 
-        $this->get(route('admin.properties.edit', $propertyA->id))
+        $this->get(route('admin.properties.edit', $propertyA->uuid))
             ->assertOk();
     }
 
@@ -59,7 +59,7 @@ class EditIsolationTest extends TestCase
 
         $this->actingAs($adminA);
 
-        $this->get(route('admin.people.edit', $personB->id))
+        $this->get(route('admin.people.edit', $personB->uuid))
             ->assertNotFound();
     }
 
@@ -75,7 +75,7 @@ class EditIsolationTest extends TestCase
 
         $this->actingAs($adminA);
 
-        $this->get(route('admin.people.edit', $personA->id))
+        $this->get(route('admin.people.edit', $personA->uuid))
             ->assertOk();
     }
 }

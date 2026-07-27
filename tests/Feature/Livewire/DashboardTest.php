@@ -27,7 +27,7 @@ class DashboardTest extends TestCase
             'status' => 'available',
         ]);
 
-        Property::factory()->count(2)->create([
+        $rentedProperties = Property::factory()->count(2)->create([
             'configuration_id' => $configuration->id,
             'user_id' => $admin->id,
             'status' => 'rented',
@@ -38,12 +38,21 @@ class DashboardTest extends TestCase
             'user_id' => $admin->id,
         ]);
 
-        Contract::factory()->count(2)->create([
+        $tenants = People::factory()->count(2)->create([
             'configuration_id' => $configuration->id,
             'user_id' => $admin->id,
-            'status' => 'active',
-            'rent_value' => 1000,
         ]);
+
+        foreach ($rentedProperties as $index => $property) {
+            Contract::factory()->create([
+                'configuration_id' => $configuration->id,
+                'user_id' => $admin->id,
+                'property_id' => $property->id,
+                'people_id' => $tenants[$index]->id,
+                'status' => 'active',
+                'rent_value' => 1000,
+            ]);
+        }
 
         $this->actingAs($admin);
 
@@ -52,7 +61,7 @@ class DashboardTest extends TestCase
         $this->assertEquals(5, $component->viewData('totalProperties'));
         $this->assertEquals(3, $component->viewData('availableProperties'));
         $this->assertEquals(2, $component->viewData('rentedProperties'));
-        $this->assertEquals(4, $component->viewData('totalPeople'));
+        $this->assertEquals(6, $component->viewData('totalPeople'));
         $this->assertEquals(2, $component->viewData('activeContracts'));
         $this->assertEquals(2000, (float) $component->viewData('monthlyRevenue'));
     }
