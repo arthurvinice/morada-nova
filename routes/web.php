@@ -21,10 +21,11 @@ Route::get('/', function () {
 
 Route::get('/cadastro', [ConfigurationController::class, 'createPublic'])->name('configurations.create-public');
 
-
 Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
 
-    //inqulinos
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    //inquilinos
     Route::get('/inquilinos', [PeopleController::class, 'index'])->name('people.index');
     Route::get('/inquilinos/cadastrar', [PeopleController::class, 'create'])->name('people.create');
     Route::get('/inquilinos/{people}/editar', [PeopleController::class, 'edit'])->name('people.edit');
@@ -39,38 +40,36 @@ Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
     Route::get('/contratos/cadastrar', [ContractController::class, 'create'])->name('contracts.create');
     Route::get('/contratos/{contract}/editar', [ContractController::class, 'edit'])->name('contracts.edit');
 
-    //notificações
-    Route::get('/notificacoes', [NotificationController::class, 'index'])->name('notification.index');
-    Route::get('/notificacoes/criar', [NotificationController::class, 'create'])->middleware('can:super-admin-access')->name('notification.create');
-    Route::post('/notificacoes/enviar', [NotificationController::class, 'store'])->middleware('can:super-admin-access')->name('notification.store');
-    Route::get('/notificacoes/mostrar/{id}', [NotificationController::class, 'show'])->name('notification.show');
-
     //helpcenter
     Route::get('helpcenter', [HelpCenterController::class, 'index'])->name('helpcenter.index');
 
-    //rotas changelog
+    //suporte
     Route::get('/suporte/changelog', [ChangelogController::class, 'index'])->name('changelog.index');
-    Route::get('/suporte/changelog/criar', [ChangelogController::class, 'create'])->middleware('can:super-admin-access')->name('changelog.create');
-    Route::post('/suporte/changelog', [ChangelogController::class, 'store'])->middleware('can:super-admin-access')->name('changelog.store');
-
-    //rota termos
     Route::get('/suporte/termos', [TermsController::class, 'show'])->name('terms.show');
 
-    // Perfil do usuário
-    Route::get('usuarios/', [UserController::class, 'index'])->name('user.index');
-    Route::get('usuarios/criar', [UserController::class, 'create'])->name('user.create');
-    Route::get('usuarios/{id}/editar', [UserController::class, 'edit'])->middleware('can:user-access')->name('user.edit');
-    Route::post('usuarios/store', [UserController::class, 'store'])->middleware('can:user-access')->name('user.store');
-    Route::get('usuario/{id}', [UserController::class, 'show'])->middleware('can:user-access')->name('user.perfil.show');
-    Route::put('usuario/update/{id}', [UserController::class, 'update'])->middleware('can:user-access')->name('user.perfil.update');
-    Route::put('usuario/update/password/{id}', [UserController::class, 'updatePassword'])->middleware('can:user-access')->name('user.perfil.updatePassword');
+    //perfil (qualquer usuário autenticado edita o próprio perfil)
+    Route::get('perfil', [UserController::class, 'show'])->name('user.perfil.show');
 
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    //notificação
+    Route::get('/notificacoes', [NotificationController::class, 'index'])->name('notification.index');
+    Route::get('/notificacoes/criar', [NotificationController::class, 'create'])->name('notification.create');
+    Route::post('/notificacoes/enviar', [NotificationController::class, 'store'])->name('notification.store');
+    Route::get('/notificacoes/mostrar/{id}', [NotificationController::class, 'show'])->name('notification.show');
 
-    //ROTAS SUPER ADMIN
+    //ROTAS ADMIN
+    Route::middleware('can:admin-access')->group(function () {
+        Route::get('usuarios', [UserController::class, 'index'])->name('user.index');
+        Route::get('usuarios/criar', [UserController::class, 'create'])->name('user.create');
+        Route::get('usuarios/{id}/editar', [UserController::class, 'edit'])->name('user.edit');
+    });
+
+    //ROTAS SOMENTE SUPERADMIN
     Route::middleware('can:super-admin-access')->group(function () {
         Route::get('/configuracoes', [ConfigurationController::class, 'index'])->name('configurations.index');
         Route::get('/configuracoes/cadastrar', [ConfigurationController::class, 'create'])->name('configurations.create');
         Route::get('/configuracoes/{configuration}/editar', [ConfigurationController::class, 'edit'])->name('configurations.edit');
+
+        Route::get('/suporte/changelog/criar', [ChangelogController::class, 'create'])->name('changelog.create');
+        Route::post('/suporte/changelog', [ChangelogController::class, 'store'])->name('changelog.store');
     });
 });

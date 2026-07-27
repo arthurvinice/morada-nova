@@ -8,30 +8,28 @@ use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         Paginator::useBootstrapFive();
-        Paginator::useBootstrapFour();
 
         // Gate para verificar se é SuperAdmin
         Gate::define('super-admin-access', function ($user) {
-            return $user->role === 'SuperAdmin';
+            return $user->isSuperAdmin();
         });
 
-        // Gate para verificar se é Aluno
-        Gate::define('aluno-access', function ($user) {
-            return $user->role === 'Aluno' || $user->role === 'SuperAdmin';
+        // Gate para verificar se é Admin ou SuperAdmin
+        Gate::define('admin-access', function ($user) {
+            return $user->isAdmin() || $user->isSuperAdmin();
+        });
+
+        // Gate para qualquer usuário autenticado (standard, admin ou superadmin)
+        Gate::define('standard-access', function ($user) {
+            return in_array($user->role, ['standard', 'admin', 'superadmin']);
         });
     }
 }
