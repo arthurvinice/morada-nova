@@ -11,8 +11,6 @@
         </nav>
     </div>
 
-    @include('_inc.alerts')
-
     <div class="card">
         <div class="card-header">
             <h5 class="mb-0">Novo Usuário</h5>
@@ -72,6 +70,30 @@
                     </div>
                 </div>
 
+                @if (auth()->user()->isSuperAdmin())
+                    <div class="row">
+                        <div class="mb-3 col-md-12">
+                            <label for="configuration_id" class="form-label">Configuração (Imobiliária)</label>
+                            <select id="configuration_id" wire:ignore
+                                class="form-select select2 @error('configuration_id') is-invalid @enderror"
+                                data-placeholder="Selecione uma configuração existente...">
+                                <option></option>
+                                @foreach ($configurations as $configuration)
+                                    <option value="{{ $configuration->id }}" @selected($configuration_id == $configuration->id)>
+                                        {{ $configuration->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('configuration_id') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
+                            <div class="form-text">
+                                Para usuários <strong>Administrador</strong>, deixe em branco para criar uma nova
+                                configuração automaticamente com os dados deste usuário. Para usuários
+                                <strong>Padrão</strong>, a seleção de uma configuração existente é obrigatória.
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="password" class="form-label">Senha</label>
@@ -91,4 +113,22 @@
             </form>
         </div>
     </div>
+
+    @script
+    <script>
+        $(() => {
+            const $select = $(wire.$el).find('#configuration_id');
+
+            if ($select.length) {
+                $select.select2({
+                    width: '100%',
+                    dropdownParent: $select.closest('.mb-3'),
+                    allowClear: true,
+                }).on('change', (e) => {
+                    $wire.set('configuration_id', e.target.value);
+                });
+            }
+        });
+    </script>
+    @endscript
 </div>

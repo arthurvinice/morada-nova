@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChangelogController;
+use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HelpCenterController;
@@ -18,6 +19,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/cadastro', [ConfigurationController::class, 'createPublic'])->name('configurations.create-public');
 
 
 Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
@@ -55,8 +57,8 @@ Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
     Route::get('/suporte/termos', [TermsController::class, 'show'])->name('terms.show');
 
     // Perfil do usuário
-    Route::get('usuarios/', [UserController::class, 'index'])->middleware('can:super-admin-access')->name('user.index');
-    Route::get('usuarios/criar', [UserController::class, 'create'])->middleware('can:super-admin-access')->name('user.create');
+    Route::get('usuarios/', [UserController::class, 'index'])->name('user.index');
+    Route::get('usuarios/criar', [UserController::class, 'create'])->name('user.create');
     Route::get('usuarios/{id}/editar', [UserController::class, 'edit'])->middleware('can:user-access')->name('user.edit');
     Route::post('usuarios/store', [UserController::class, 'store'])->middleware('can:user-access')->name('user.store');
     Route::get('usuario/{id}', [UserController::class, 'show'])->middleware('can:user-access')->name('user.perfil.show');
@@ -64,4 +66,11 @@ Route::name('admin.')->middleware(['auth', 'check.active'])->group(function () {
     Route::put('usuario/update/password/{id}', [UserController::class, 'updatePassword'])->middleware('can:user-access')->name('user.perfil.updatePassword');
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    //ROTAS SUPER ADMIN
+    Route::middleware('can:super-admin-access')->group(function () {
+        Route::get('/configuracoes', [ConfigurationController::class, 'index'])->name('configurations.index');
+        Route::get('/configuracoes/cadastrar', [ConfigurationController::class, 'create'])->name('configurations.create');
+        Route::get('/configuracoes/{configuration}/editar', [ConfigurationController::class, 'edit'])->name('configurations.edit');
+    });
 });

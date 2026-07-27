@@ -26,8 +26,13 @@ class ConfigurationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Configuration $configuration)
+    public function edit(Configuration $configuration)
     {
         return view('configuration.store', compact('configuration'));
+    }
+
+    public function createPublic()
+    {
+        return view('configuration.create-public');
     }
 }
